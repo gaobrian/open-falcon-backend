@@ -1,8 +1,8 @@
 package funcs
 
 import (
+	"github.com/gaobrian/open-falcon-backend/modules/winagent/tools/cpu"
 	"github.com/gaobrian/open-falcon-backend/common/model"
-	"github.com/toolkits/nux"
 	"sync"
 )
 
@@ -11,12 +11,12 @@ const (
 )
 
 var (
-	procStatHistory [historyCount]*nux.ProcStat
+	procStatHistory [historyCount]*cpu.CPUTimesStat
 	psLock          = new(sync.RWMutex)
 )
 
 func UpdateCpuStat() error {
-	ps, err := nux.CurrentProcStat()
+	ps, err := cpu.CPUTimes(false)
 	if err != nil {
 		return err
 	}
@@ -27,15 +27,15 @@ func UpdateCpuStat() error {
 		procStatHistory[i] = procStatHistory[i-1]
 	}
 
-	procStatHistory[0] = ps
+	procStatHistory[0] = &ps[0]
 	return nil
 }
 
-func deltaTotal() uint64 {
+func deltaTotal() float64 {
 	if procStatHistory[1] == nil {
 		return 0
 	}
-	return procStatHistory[0].Cpu.Total - procStatHistory[1].Cpu.Total
+	return procStatHistory[0].Total - procStatHistory[1].Total
 }
 
 func CpuIdle() float64 {
@@ -46,7 +46,7 @@ func CpuIdle() float64 {
 		return 0.0
 	}
 	invQuotient := 100.00 / float64(dt)
-	return float64(procStatHistory[0].Cpu.Idle-procStatHistory[1].Cpu.Idle) * invQuotient
+	return float64(procStatHistory[0].Idle-procStatHistory[1].Idle) * invQuotient
 }
 
 func CpuUser() float64 {
@@ -57,7 +57,7 @@ func CpuUser() float64 {
 		return 0.0
 	}
 	invQuotient := 100.00 / float64(dt)
-	return float64(procStatHistory[0].Cpu.User-procStatHistory[1].Cpu.User) * invQuotient
+	return float64(procStatHistory[0].User-procStatHistory[1].User) * invQuotient
 }
 
 func CpuNice() float64 {
@@ -68,7 +68,7 @@ func CpuNice() float64 {
 		return 0.0
 	}
 	invQuotient := 100.00 / float64(dt)
-	return float64(procStatHistory[0].Cpu.Nice-procStatHistory[1].Cpu.Nice) * invQuotient
+	return float64(procStatHistory[0].Nice-procStatHistory[1].Nice) * invQuotient
 }
 
 func CpuSystem() float64 {
@@ -79,7 +79,7 @@ func CpuSystem() float64 {
 		return 0.0
 	}
 	invQuotient := 100.00 / float64(dt)
-	return float64(procStatHistory[0].Cpu.System-procStatHistory[1].Cpu.System) * invQuotient
+	return float64(procStatHistory[0].System-procStatHistory[1].System) * invQuotient
 }
 
 func CpuIowait() float64 {
@@ -90,7 +90,7 @@ func CpuIowait() float64 {
 		return 0.0
 	}
 	invQuotient := 100.00 / float64(dt)
-	return float64(procStatHistory[0].Cpu.Iowait-procStatHistory[1].Cpu.Iowait) * invQuotient
+	return float64(procStatHistory[0].Iowait-procStatHistory[1].Iowait) * invQuotient
 }
 
 func CpuIrq() float64 {
@@ -101,7 +101,7 @@ func CpuIrq() float64 {
 		return 0.0
 	}
 	invQuotient := 100.00 / float64(dt)
-	return float64(procStatHistory[0].Cpu.Irq-procStatHistory[1].Cpu.Irq) * invQuotient
+	return float64(procStatHistory[0].Irq-procStatHistory[1].Irq) * invQuotient
 }
 
 func CpuSoftIrq() float64 {
@@ -112,7 +112,7 @@ func CpuSoftIrq() float64 {
 		return 0.0
 	}
 	invQuotient := 100.00 / float64(dt)
-	return float64(procStatHistory[0].Cpu.SoftIrq-procStatHistory[1].Cpu.SoftIrq) * invQuotient
+	return float64(procStatHistory[0].Softirq-procStatHistory[1].Softirq) * invQuotient
 }
 
 func CpuSteal() float64 {
@@ -123,7 +123,7 @@ func CpuSteal() float64 {
 		return 0.0
 	}
 	invQuotient := 100.00 / float64(dt)
-	return float64(procStatHistory[0].Cpu.Steal-procStatHistory[1].Cpu.Steal) * invQuotient
+	return float64(procStatHistory[0].Steal-procStatHistory[1].Steal) * invQuotient
 }
 
 func CpuGuest() float64 {
@@ -134,13 +134,7 @@ func CpuGuest() float64 {
 		return 0.0
 	}
 	invQuotient := 100.00 / float64(dt)
-	return float64(procStatHistory[0].Cpu.Guest-procStatHistory[1].Cpu.Guest) * invQuotient
-}
-
-func CurrentCpuSwitches() uint64 {
-	psLock.RLock()
-	defer psLock.RUnlock()
-	return procStatHistory[0].Ctxt
+	return float64(procStatHistory[0].Guest-procStatHistory[1].Guest) * invQuotient
 }
 
 func CpuPrepared() bool {
@@ -153,7 +147,6 @@ func CpuMetrics() []*model.MetricValue {
 	if !CpuPrepared() {
 		return []*model.MetricValue{}
 	}
-
 	cpuIdleVal := CpuIdle()
 	idle := GaugeValue("cpu.idle", cpuIdleVal)
 	busy := GaugeValue("cpu.busy", 100.0-cpuIdleVal)
@@ -165,6 +158,5 @@ func CpuMetrics() []*model.MetricValue {
 	softirq := GaugeValue("cpu.softirq", CpuSoftIrq())
 	steal := GaugeValue("cpu.steal", CpuSteal())
 	guest := GaugeValue("cpu.guest", CpuGuest())
-	switches := CounterValue("cpu.switches", CurrentCpuSwitches())
-	return []*model.MetricValue{idle, busy, user, nice, system, iowait, irq, softirq, steal, guest, switches}
+	return []*model.MetricValue{idle, busy, user, nice, system, iowait, irq, softirq, steal, guest}
 }

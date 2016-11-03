@@ -3,7 +3,7 @@ package http
 import (
 	"fmt"
 	"github.com/gaobrian/open-falcon-backend/modules/agent/funcs"
-	"github.com/toolkits/nux"
+	//"github.com/toolkits/nux"
 	"net/http"
 	"runtime"
 )

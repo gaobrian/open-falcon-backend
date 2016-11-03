@@ -1,75 +1,37 @@
 package funcs
 
 import (
-	"strings"
-
+	"github.com/gaobrian/open-falcon-backend/modules/winagent/tools/net"
+	"log"
 	"github.com/gaobrian/open-falcon-backend/common/model"
-	"github.com/gaobrian/open-falcon-backend/modules/agent/g"
-	log "github.com/Sirupsen/logrus"
-	"github.com/toolkits/nux"
 )
 
 func NetMetrics() []*model.MetricValue {
-	return CoreNetMetrics(g.Config().Collector.IfacePrefix, g.Config().Collector.EthAll)
+	return CoreNetMetrics()
 }
 
-func containsCollector(iface string, ifacePrefix []string) bool {
-	for _, prefix := range ifacePrefix {
-		if strings.Contains(iface, prefix) {
-			return true
-		}
-	}
-	return false
-}
+func CoreNetMetrics() []*model.MetricValue {
 
-func CoreNetMetrics(ifacePrefix []string, ethAllPrefix []string) []*model.MetricValue {
-
-	netIfs, err := nux.NetIfs(ifacePrefix)
+	netIfs, err := net.NetIOCounters(true)
 	if err != nil {
-		log.Println(err)
+		log.Println("Get netInfo fail: ", err)
 		return []*model.MetricValue{}
 	}
 
 	cnt := len(netIfs)
-	ret := make([]*model.MetricValue, cnt*20+1+1)
+	ret := make([]*model.MetricValue, cnt*8)
 
 	for idx, netIf := range netIfs {
-		iface := "iface=" + netIf.Iface
-		ret[idx*20+0] = CounterValue("net.if.in.bits", netIf.InBytes*8, iface)
-		ret[idx*20+1] = CounterValue("net.if.in.packets", netIf.InPackages, iface)
-		ret[idx*20+2] = CounterValue("net.if.in.errors", netIf.InErrors, iface)
-		ret[idx*20+3] = CounterValue("net.if.in.dropped", netIf.InDropped, iface)
-		ret[idx*20+4] = CounterValue("net.if.in.fifo.errs", netIf.InFifoErrs, iface)
-		ret[idx*20+5] = CounterValue("net.if.in.frame.errs", netIf.InFrameErrs, iface)
-		ret[idx*20+6] = CounterValue("net.if.in.compressed", netIf.InCompressed, iface)
-		ret[idx*20+7] = CounterValue("net.if.in.multicast", netIf.InMulticast, iface)
-		ret[idx*20+8] = CounterValue("net.if.out.bits", netIf.OutBytes*8, iface)
-		ret[idx*20+9] = CounterValue("net.if.out.packets", netIf.OutPackages, iface)
-		ret[idx*20+10] = CounterValue("net.if.out.errors", netIf.OutErrors, iface)
-		ret[idx*20+11] = CounterValue("net.if.out.dropped", netIf.OutDropped, iface)
-		ret[idx*20+12] = CounterValue("net.if.out.fifo.errs", netIf.OutFifoErrs, iface)
-		ret[idx*20+13] = CounterValue("net.if.out.collisions", netIf.OutCollisions, iface)
-		ret[idx*20+14] = CounterValue("net.if.out.carrier.errs", netIf.OutCarrierErrs, iface)
-		ret[idx*20+15] = CounterValue("net.if.out.compressed", netIf.OutCompressed, iface)
-		ret[idx*20+16] = CounterValue("net.if.total.bits", netIf.TotalBytes*8, iface)
-		ret[idx*20+17] = CounterValue("net.if.total.packets", netIf.TotalPackages, iface)
-		ret[idx*20+18] = CounterValue("net.if.total.errors", netIf.TotalErrors, iface)
-		ret[idx*20+19] = CounterValue("net.if.total.dropped", netIf.TotalDropped, iface)
-	}
+		iface := "iface=" + netIf.Name
+		ret[idx*8+0] = CounterValue("net.if.in.bytes", netIf.BytesRecv, iface)
+		ret[idx*8+1] = CounterValue("net.if.in.packets", netIf.PacketsRecv, iface)
+		ret[idx*8+2] = CounterValue("net.if.in.errors", netIf.Errin, iface)
+		ret[idx*8+3] = CounterValue("net.if.in.dropped", netIf.Dropin, iface)
+		ret[idx*8+4] = CounterValue("net.if.out.bytes", netIf.BytesSent, iface)
+		ret[idx*8+5] = CounterValue("net.if.out.packets", netIf.PacketsSent, iface)
+		ret[idx*8+6] = CounterValue("net.if.out.errors", netIf.Errout, iface)
+		ret[idx*8+7] = CounterValue("net.if.out.dropped", netIf.Dropout, iface)
 
-	inTotalBits := int64(0)
-	outTotalBits := int64(0)
-	for _, netIf := range netIfs {
-		if containsCollector(netIf.Iface, ethAllPrefix) {
-			inTotalBits += netIf.InBytes * 8
-			outTotalBits += netIf.OutBytes * 8
-		}
 	}
-
-	if cnt != 0 {
-		ret[cnt*20+0] = CounterValue("net.if.in.bits", inTotalBits, "iface=eth_all")
-		ret[cnt*20+1] = CounterValue("net.if.out.bits", outTotalBits, "iface=eth_all")
-	}
-
 	return ret
 }

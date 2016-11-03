@@ -2,44 +2,35 @@ package funcs
 
 import (
 	"fmt"
+	"github.com/gaobrian/open-falcon-backend/modules/winagent/tools/disk"
+	"log"
 	"github.com/gaobrian/open-falcon-backend/common/model"
-	log "github.com/Sirupsen/logrus"
-	"github.com/toolkits/nux"
 )
 
 func DeviceMetrics() (L []*model.MetricValue) {
-	mountPoints, err := nux.ListMountPoint()
-
+	mountPoints, err := disk.DiskPartitions(false)
 	if err != nil {
-		log.Println(err)
+		log.Println("Get devices error", err)
 		return
 	}
 
 	var diskTotal uint64 = 0
 	var diskUsed uint64 = 0
 
-	for idx := range mountPoints {
-		var du *nux.DeviceUsage
-		du, err = nux.BuildDeviceUsage(mountPoints[idx][0], mountPoints[idx][1], mountPoints[idx][2])
+	for _, idx := range mountPoints {
+		du, err := disk.DiskUsage(idx.Mountpoint)
 		if err != nil {
-			log.Println(err)
+			log.Println("Get device fail: ", err)
 			continue
 		}
-
-		diskTotal += du.BlocksAll
-		diskUsed += du.BlocksUsed
-
-		tags := fmt.Sprintf("mount=%s,fstype=%s", du.FsFile, du.FsVfstype)
-		L = append(L, GaugeValue("df.bytes.total", du.BlocksAll, tags))
-		L = append(L, GaugeValue("df.bytes.used", du.BlocksUsed, tags))
-		L = append(L, GaugeValue("df.bytes.free", du.BlocksFree, tags))
-		L = append(L, GaugeValue("df.bytes.used.percent", du.BlocksUsedPercent, tags))
-		L = append(L, GaugeValue("df.bytes.free.percent", du.BlocksFreePercent, tags))
-		L = append(L, GaugeValue("df.inodes.total", du.InodesAll, tags))
-		L = append(L, GaugeValue("df.inodes.used", du.InodesUsed, tags))
-		L = append(L, GaugeValue("df.inodes.free", du.InodesFree, tags))
-		L = append(L, GaugeValue("df.inodes.used.percent", du.InodesUsedPercent, tags))
-		L = append(L, GaugeValue("df.inodes.free.percent", du.InodesFreePercent, tags))
+		diskTotal += du.Total
+		diskUsed += du.Used
+		tags := fmt.Sprintf("mount=%s,fstype=%s", idx.Mountpoint, idx.Fstype)
+		L = append(L, GaugeValue("df.bytes.total", du.Total, tags))
+		L = append(L, GaugeValue("df.bytes.used", du.Used, tags))
+		L = append(L, GaugeValue("df.bytes.free", du.Free, tags))
+		L = append(L, GaugeValue("df.bytes.used.percent", du.UsedPercent, tags))
+		L = append(L, GaugeValue("df.bytes.free.percent", 100.0-du.UsedPercent, tags))
 
 	}
 
@@ -48,6 +39,5 @@ func DeviceMetrics() (L []*model.MetricValue) {
 		L = append(L, GaugeValue("df.statistics.used", float64(diskUsed)))
 		L = append(L, GaugeValue("df.statistics.used.percent", float64(diskUsed)*100.0/float64(diskTotal)))
 	}
-
 	return
 }
