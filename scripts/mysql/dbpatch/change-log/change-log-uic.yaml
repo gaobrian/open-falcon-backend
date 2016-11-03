@@ -1,7 +1,0 @@
-[
-    {
-        id: "mike-1",
-        filename: "mike-1.sql",
-        comment: "The initialization of existing database schema"
-    }
-]
