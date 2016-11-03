@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	event "github.com/Cepave/open-falcon-backend/modules/fe/model/falcon_portal"
+	event "github.com/gaobrian/open-falcon-backend/modules/fe/model/falcon_portal"
 	log "github.com/Sirupsen/logrus"
 )
 

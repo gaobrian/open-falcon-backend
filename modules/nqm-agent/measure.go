@@ -6,7 +6,7 @@ import (
 
 	log "github.com/Sirupsen/logrus"
 
-	"github.com/Cepave/open-falcon-backend/common/model"
+	"github.com/gaobrian/open-falcon-backend/common/model"
 	"github.com/montanaflynn/stats"
 )
 

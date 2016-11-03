@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/Cepave/open-falcon-backend/common/logruslog"
-	"github.com/Cepave/open-falcon-backend/common/vipercfg"
+	"github.com/gaobrian/open-falcon-backend/common/logruslog"
+	"github.com/gaobrian/open-falcon-backend/common/vipercfg"
 )
 
 func main() {

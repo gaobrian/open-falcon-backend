@@ -3,8 +3,8 @@ package rpc
 import (
 	"testing"
 
-	"github.com/Cepave/open-falcon-backend/modules/hbs/db"
-	hbstesting "github.com/Cepave/open-falcon-backend/modules/hbs/testing"
+	"github.com/gaobrian/open-falcon-backend/modules/hbs/db"
+	hbstesting "github.com/gaobrian/open-falcon-backend/modules/hbs/testing"
 	. "gopkg.in/check.v1"
 )
 

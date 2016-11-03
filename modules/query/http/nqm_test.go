@@ -2,7 +2,7 @@ package http
 
 import (
 	"encoding/json"
-	dsl "github.com/Cepave/open-falcon-backend/modules/query/dsl/nqm_parser"
+	dsl "github.com/gaobrian/open-falcon-backend/modules/query/dsl/nqm_parser"
 	"github.com/astaxie/beego"
 	"github.com/bitly/go-simplejson"
 	. "gopkg.in/check.v1"

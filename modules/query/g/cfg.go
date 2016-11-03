@@ -8,7 +8,7 @@ import (
 
 	log "github.com/Sirupsen/logrus"
 
-	"github.com/Cepave/open-falcon-backend/modules/query/logger"
+	"github.com/gaobrian/open-falcon-backend/modules/query/logger"
 	"github.com/toolkits/file"
 )
 

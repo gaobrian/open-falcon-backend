@@ -1,8 +1,8 @@
 package nqm
 
 import (
-	"github.com/Cepave/open-falcon-backend/modules/query/g"
-	rpctest "github.com/Cepave/open-falcon-backend/modules/query/test"
+	"github.com/gaobrian/open-falcon-backend/modules/query/g"
+	rpctest "github.com/gaobrian/open-falcon-backend/modules/query/test"
 	"github.com/bitly/go-simplejson"
 	"github.com/gorilla/rpc/v2"
 	. "gopkg.in/check.v1"

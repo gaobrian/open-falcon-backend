@@ -5,13 +5,13 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/Cepave/open-falcon-backend/common/logruslog"
-	"github.com/Cepave/open-falcon-backend/common/vipercfg"
-	"github.com/Cepave/open-falcon-backend/modules/judge/cron"
-	"github.com/Cepave/open-falcon-backend/modules/judge/g"
-	"github.com/Cepave/open-falcon-backend/modules/judge/http"
-	"github.com/Cepave/open-falcon-backend/modules/judge/rpc"
-	"github.com/Cepave/open-falcon-backend/modules/judge/store"
+	"github.com/gaobrian/open-falcon-backend/common/logruslog"
+	"github.com/gaobrian/open-falcon-backend/common/vipercfg"
+	"github.com/gaobrian/open-falcon-backend/modules/judge/cron"
+	"github.com/gaobrian/open-falcon-backend/modules/judge/g"
+	"github.com/gaobrian/open-falcon-backend/modules/judge/http"
+	"github.com/gaobrian/open-falcon-backend/modules/judge/rpc"
+	"github.com/gaobrian/open-falcon-backend/modules/judge/store"
 	log "github.com/Sirupsen/logrus"
 )
 

@@ -1,7 +1,7 @@
 package socket
 
 import (
-	"github.com/Cepave/open-falcon-backend/modules/transfer/g"
+	"github.com/gaobrian/open-falcon-backend/modules/transfer/g"
 	log "github.com/Sirupsen/logrus"
 	"net"
 )

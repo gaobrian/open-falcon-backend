@@ -2,14 +2,14 @@ package main
 
 import (
 	"fmt"
-	"github.com/Cepave/open-falcon-backend/common/logruslog"
-	"github.com/Cepave/open-falcon-backend/common/vipercfg"
-	"github.com/Cepave/open-falcon-backend/modules/agent/cron"
-	"github.com/Cepave/open-falcon-backend/modules/agent/funcs"
-	"github.com/Cepave/open-falcon-backend/modules/agent/g"
-	"github.com/Cepave/open-falcon-backend/modules/agent/http"
+	"github.com/gaobrian/open-falcon-backend/common/logruslog"
+	"github.com/gaobrian/open-falcon-backend/common/vipercfg"
+	"github.com/gaobrian/open-falcon-backend/modules/agent/cron"
+	"github.com/gaobrian/open-falcon-backend/modules/agent/funcs"
+	"github.com/gaobrian/open-falcon-backend/modules/agent/g"
+	"github.com/gaobrian/open-falcon-backend/modules/agent/http"
 	"os"
-	"github.com/Cepave/open-falcon-backend/modules/agent/logwatch"
+	"github.com/gaobrian/open-falcon-backend/modules/agent/logwatch"
 )
 
 func main() {

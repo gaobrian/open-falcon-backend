@@ -6,8 +6,8 @@ import (
 
 	"database/sql"
 
-	coommonModel "github.com/Cepave/open-falcon-backend/common/model"
-	"github.com/Cepave/open-falcon-backend/common/utils"
+	coommonModel "github.com/gaobrian/open-falcon-backend/common/model"
+	"github.com/gaobrian/open-falcon-backend/common/utils"
 	log "github.com/Sirupsen/logrus"
 	"github.com/astaxie/beego/orm"
 )

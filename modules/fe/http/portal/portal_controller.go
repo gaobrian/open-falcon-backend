@@ -1,8 +1,8 @@
 package portal
 
 import (
-	"github.com/Cepave/open-falcon-backend/modules/fe/http/base"
-	event "github.com/Cepave/open-falcon-backend/modules/fe/model/falcon_portal"
+	"github.com/gaobrian/open-falcon-backend/modules/fe/http/base"
+	event "github.com/gaobrian/open-falcon-backend/modules/fe/model/falcon_portal"
 )
 
 type PortalController struct {

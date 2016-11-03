@@ -2,7 +2,7 @@ package cron
 
 import (
 	log "github.com/Sirupsen/logrus"
-	"github.com/Cepave/open-falcon-backend/modules/aggregator/g"
+	"github.com/gaobrian/open-falcon-backend/modules/aggregator/g"
 	"time"
 )
 

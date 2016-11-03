@@ -6,7 +6,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"sync"
 
-	"github.com/Cepave/open-falcon-backend/modules/nodata/g"
+	"github.com/gaobrian/open-falcon-backend/modules/nodata/g"
 )
 
 const (

@@ -1,7 +1,7 @@
 package sender
 
 import (
-	"github.com/Cepave/open-falcon-backend/modules/transfer/proc"
+	"github.com/gaobrian/open-falcon-backend/modules/transfer/proc"
 	log "github.com/Sirupsen/logrus"
 	"github.com/toolkits/container/list"
 	"strings"

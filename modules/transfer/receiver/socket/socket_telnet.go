@@ -3,9 +3,9 @@ package socket
 import (
 	"bufio"
 	"fmt"
-	"github.com/Cepave/open-falcon-backend/modules/transfer/g"
-	"github.com/Cepave/open-falcon-backend/modules/transfer/proc"
-	"github.com/Cepave/open-falcon-backend/modules/transfer/sender"
+	"github.com/gaobrian/open-falcon-backend/modules/transfer/g"
+	"github.com/gaobrian/open-falcon-backend/modules/transfer/proc"
+	"github.com/gaobrian/open-falcon-backend/modules/transfer/sender"
 	cmodel "github.com/open-falcon/common/model"
 	"net"
 	"strconv"

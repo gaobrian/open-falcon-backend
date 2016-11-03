@@ -8,7 +8,7 @@ import (
 	"github.com/Jeffail/gabs"
 	"github.com/emirpasic/gods/sets/hashset"
 
-	"github.com/Cepave/open-falcon-backend/modules/fe/g"
+	"github.com/gaobrian/open-falcon-backend/modules/fe/g"
 	log "github.com/Sirupsen/logrus"
 )
 

@@ -1,7 +1,7 @@
 package logruslog
 
 import (
-	"github.com/Cepave/open-falcon-backend/common/vipercfg"
+	"github.com/gaobrian/open-falcon-backend/common/vipercfg"
 	log "github.com/Sirupsen/logrus"
 )
 

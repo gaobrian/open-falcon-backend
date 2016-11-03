@@ -2,15 +2,15 @@ package main
 
 import (
 	"fmt"
-	"github.com/Cepave/open-falcon-backend/common/logruslog"
-	"github.com/Cepave/open-falcon-backend/common/vipercfg"
+	"github.com/gaobrian/open-falcon-backend/common/logruslog"
+	"github.com/gaobrian/open-falcon-backend/common/vipercfg"
 	"os"
 
-	"github.com/Cepave/open-falcon-backend/modules/task/collector"
-	"github.com/Cepave/open-falcon-backend/modules/task/g"
-	"github.com/Cepave/open-falcon-backend/modules/task/http"
-	"github.com/Cepave/open-falcon-backend/modules/task/index"
-	"github.com/Cepave/open-falcon-backend/modules/task/proc"
+	"github.com/gaobrian/open-falcon-backend/modules/task/collector"
+	"github.com/gaobrian/open-falcon-backend/modules/task/g"
+	"github.com/gaobrian/open-falcon-backend/modules/task/http"
+	"github.com/gaobrian/open-falcon-backend/modules/task/index"
+	"github.com/gaobrian/open-falcon-backend/modules/task/proc"
 )
 
 func main() {

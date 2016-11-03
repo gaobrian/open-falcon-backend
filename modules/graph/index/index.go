@@ -4,8 +4,8 @@ import (
 	"fmt"
 	log "github.com/Sirupsen/logrus"
 
-	cmodel "github.com/Cepave/open-falcon-backend/common/model"
-	"github.com/Cepave/open-falcon-backend/modules/graph/g"
+	cmodel "github.com/gaobrian/open-falcon-backend/common/model"
+	"github.com/gaobrian/open-falcon-backend/modules/graph/g"
 )
 
 // 初始化索引功能模块

@@ -4,7 +4,7 @@ import (
 	"net"
 	"net/rpc"
 
-	"github.com/Cepave/open-falcon-backend/modules/judge/g"
+	"github.com/gaobrian/open-falcon-backend/modules/judge/g"
 	log "github.com/Sirupsen/logrus"
 )
 

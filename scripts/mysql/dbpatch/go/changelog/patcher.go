@@ -2,7 +2,7 @@ package changelog
 
 import (
 	dbsql "database/sql"
-	patchsql "github.com/Cepave/scripts/dbpatch/go/sql"
+	patchsql "github.com/gaobrian/scripts/dbpatch/go/sql"
 	"fmt"
 	"log"
 )

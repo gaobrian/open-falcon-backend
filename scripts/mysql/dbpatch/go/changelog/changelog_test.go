@@ -3,7 +3,7 @@ package changelog
 import (
 	"testing"
 	dbsql "database/sql"
-	patchsql "github.com/Cepave/scripts/dbpatch/go/sql"
+	patchsql "github.com/gaobrian/scripts/dbpatch/go/sql"
 	"flag"
 	. "gopkg.in/check.v1"
 )

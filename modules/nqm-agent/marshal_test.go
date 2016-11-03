@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Cepave/open-falcon-backend/common/model"
+	"github.com/gaobrian/open-falcon-backend/common/model"
 )
 
 func TestConvToKeyValueString(t *testing.T) {

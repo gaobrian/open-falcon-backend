@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Cepave/open-falcon-backend/modules/fe/g"
+	"github.com/gaobrian/open-falcon-backend/modules/fe/g"
 	log "github.com/Sirupsen/logrus"
 	"github.com/astaxie/beego/orm"
 	"github.com/emirpasic/gods/maps/hashmap"

@@ -7,7 +7,7 @@ import (
 	"net/rpc/jsonrpc"
 	"time"
 
-	"github.com/Cepave/open-falcon-backend/modules/hbs/g"
+	"github.com/gaobrian/open-falcon-backend/modules/hbs/g"
 )
 
 type Hbs int

@@ -2,9 +2,9 @@ package cron
 
 import (
 	"fmt"
-	"github.com/Cepave/open-falcon-backend/modules/alarm/g"
-	"github.com/Cepave/open-falcon-backend/common/model"
-	"github.com/Cepave/open-falcon-backend/common/utils"
+	"github.com/gaobrian/open-falcon-backend/modules/alarm/g"
+	"github.com/gaobrian/open-falcon-backend/common/model"
+	"github.com/gaobrian/open-falcon-backend/common/utils"
 )
 
 func BuildCommonSMSContent(event *model.Event) string {

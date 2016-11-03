@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Cepave/open-falcon-backend/common/model"
-	"github.com/Cepave/open-falcon-backend/modules/agent/g"
+	"github.com/gaobrian/open-falcon-backend/common/model"
+	"github.com/gaobrian/open-falcon-backend/modules/agent/g"
 	log "github.com/Sirupsen/logrus"
 )
 

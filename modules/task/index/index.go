@@ -3,7 +3,7 @@ package index
 import (
 	log "github.com/Sirupsen/logrus"
 
-	"github.com/Cepave/open-falcon-backend/modules/task/g"
+	"github.com/gaobrian/open-falcon-backend/modules/task/g"
 )
 
 // 初始化索引功能模块

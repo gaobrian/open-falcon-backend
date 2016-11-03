@@ -3,12 +3,12 @@ package ginHttp
 import (
 	"time"
 
-	cmodel "github.com/Cepave/open-falcon-backend/common/model"
+	cmodel "github.com/gaobrian/open-falcon-backend/common/model"
 
-	"github.com/Cepave/open-falcon-backend/modules/query/g"
-	"github.com/Cepave/open-falcon-backend/modules/query/gin_http/computeFunc"
-	grahttp "github.com/Cepave/open-falcon-backend/modules/query/gin_http/grafana"
-	"github.com/Cepave/open-falcon-backend/modules/query/gin_http/openFalcon"
+	"github.com/gaobrian/open-falcon-backend/modules/query/g"
+	"github.com/gaobrian/open-falcon-backend/modules/query/gin_http/computeFunc"
+	grahttp "github.com/gaobrian/open-falcon-backend/modules/query/gin_http/grafana"
+	"github.com/gaobrian/open-falcon-backend/modules/query/gin_http/openFalcon"
 	"github.com/gin-gonic/gin"
 )
 

@@ -6,7 +6,7 @@ import (
 
 	"strings"
 
-	"github.com/Cepave/open-falcon-backend/modules/fe/model/uic"
+	"github.com/gaobrian/open-falcon-backend/modules/fe/model/uic"
 	"github.com/astaxie/beego/orm"
 )
 

@@ -7,12 +7,12 @@ import (
 	"sync/atomic"
 	"time"
 
-	cmodel "github.com/Cepave/open-falcon-backend/common/model"
+	cmodel "github.com/gaobrian/open-falcon-backend/common/model"
 	"github.com/open-falcon/rrdlite"
 	"github.com/toolkits/file"
 
-	"github.com/Cepave/open-falcon-backend/modules/graph/g"
-	"github.com/Cepave/open-falcon-backend/modules/graph/store"
+	"github.com/gaobrian/open-falcon-backend/modules/graph/g"
+	"github.com/gaobrian/open-falcon-backend/modules/graph/store"
 )
 
 var (

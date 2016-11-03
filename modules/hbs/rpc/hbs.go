@@ -3,9 +3,9 @@ package rpc
 import (
 	"fmt"
 
-	"github.com/Cepave/open-falcon-backend/common/model"
-	"github.com/Cepave/open-falcon-backend/common/utils"
-	"github.com/Cepave/open-falcon-backend/modules/hbs/cache"
+	"github.com/gaobrian/open-falcon-backend/common/model"
+	"github.com/gaobrian/open-falcon-backend/common/utils"
+	"github.com/gaobrian/open-falcon-backend/modules/hbs/cache"
 )
 
 func (t *Hbs) GetExpressions(req model.NullRpcRequest, reply *model.ExpressionResponse) error {

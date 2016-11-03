@@ -3,10 +3,10 @@ package db
 import (
 	"database/sql"
 	. "gopkg.in/check.v1"
-	"github.com/Cepave/open-falcon-backend/modules/hbs/g"
-	commonDb "github.com/Cepave/open-falcon-backend/common/db"
-	commonModel "github.com/Cepave/open-falcon-backend/common/model"
-	hbstesting "github.com/Cepave/open-falcon-backend/modules/hbs/testing"
+	"github.com/gaobrian/open-falcon-backend/modules/hbs/g"
+	commonDb "github.com/gaobrian/open-falcon-backend/common/db"
+	commonModel "github.com/gaobrian/open-falcon-backend/common/model"
+	hbstesting "github.com/gaobrian/open-falcon-backend/modules/hbs/testing"
 )
 
 type TestAgentSuite struct{}

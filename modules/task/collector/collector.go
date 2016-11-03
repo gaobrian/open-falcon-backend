@@ -16,8 +16,8 @@ import (
 	nhttpclient "github.com/toolkits/http/httpclient"
 	ntime "github.com/toolkits/time"
 
-	"github.com/Cepave/open-falcon-backend/modules/task/g"
-	"github.com/Cepave/open-falcon-backend/modules/task/proc"
+	"github.com/gaobrian/open-falcon-backend/modules/task/g"
+	"github.com/gaobrian/open-falcon-backend/modules/task/proc"
 )
 
 var (

@@ -5,17 +5,17 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/Cepave/open-falcon-backend/common/logruslog"
-	"github.com/Cepave/open-falcon-backend/common/vipercfg"
+	"github.com/gaobrian/open-falcon-backend/common/logruslog"
+	"github.com/gaobrian/open-falcon-backend/common/vipercfg"
 
-	"github.com/Cepave/open-falcon-backend/modules/query/conf"
-	"github.com/Cepave/open-falcon-backend/modules/query/database"
-	"github.com/Cepave/open-falcon-backend/modules/query/g"
-	ginHttp "github.com/Cepave/open-falcon-backend/modules/query/gin_http"
-	"github.com/Cepave/open-falcon-backend/modules/query/graph"
-	"github.com/Cepave/open-falcon-backend/modules/query/grpc"
-	"github.com/Cepave/open-falcon-backend/modules/query/http"
-	"github.com/Cepave/open-falcon-backend/modules/query/proc"
+	"github.com/gaobrian/open-falcon-backend/modules/query/conf"
+	"github.com/gaobrian/open-falcon-backend/modules/query/database"
+	"github.com/gaobrian/open-falcon-backend/modules/query/g"
+	ginHttp "github.com/gaobrian/open-falcon-backend/modules/query/gin_http"
+	"github.com/gaobrian/open-falcon-backend/modules/query/graph"
+	"github.com/gaobrian/open-falcon-backend/modules/query/grpc"
+	"github.com/gaobrian/open-falcon-backend/modules/query/http"
+	"github.com/gaobrian/open-falcon-backend/modules/query/proc"
 )
 
 func main() {

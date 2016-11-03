@@ -8,7 +8,7 @@ import (
 
 	log "github.com/Sirupsen/logrus"
 
-	"github.com/Cepave/open-falcon-backend/modules/query/g"
+	"github.com/gaobrian/open-falcon-backend/modules/query/g"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
 )

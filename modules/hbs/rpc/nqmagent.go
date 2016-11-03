@@ -4,9 +4,9 @@ import (
 	"strings"
 	"time"
 
-	commonModel "github.com/Cepave/open-falcon-backend/common/model"
-	"github.com/Cepave/open-falcon-backend/modules/hbs/db"
-	"github.com/Cepave/open-falcon-backend/modules/hbs/model"
+	commonModel "github.com/gaobrian/open-falcon-backend/common/model"
+	"github.com/gaobrian/open-falcon-backend/modules/hbs/db"
+	"github.com/gaobrian/open-falcon-backend/modules/hbs/model"
 	"github.com/asaskevich/govalidator"
 )
 

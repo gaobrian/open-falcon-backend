@@ -8,10 +8,10 @@ import (
 	"strings"
 	"time"
 
-	dsl "github.com/Cepave/open-falcon-backend/modules/query/dsl/nqm_parser"
-	"github.com/Cepave/open-falcon-backend/modules/query/nqm"
+	dsl "github.com/gaobrian/open-falcon-backend/modules/query/dsl/nqm_parser"
+	"github.com/gaobrian/open-falcon-backend/modules/query/nqm"
 	log "github.com/Sirupsen/logrus"
-	"github.com/Cepave/open-falcon-backend/modules/query/g"
+	"github.com/gaobrian/open-falcon-backend/modules/query/g"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
 	"github.com/astaxie/beego/plugins/cors"

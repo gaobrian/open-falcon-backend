@@ -2,7 +2,7 @@ package test
 
 import (
 	"errors"
-	"github.com/Cepave/open-falcon-backend/modules/query/jsonrpc"
+	"github.com/gaobrian/open-falcon-backend/modules/query/jsonrpc"
 	log "github.com/Sirupsen/logrus"
 	rpchttp "github.com/gorilla/http"
 	"github.com/gorilla/rpc/v2"

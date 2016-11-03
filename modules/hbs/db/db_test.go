@@ -1,7 +1,7 @@
 package db
 
 import (
-	hbstesting "github.com/Cepave/open-falcon-backend/modules/hbs/testing"
+	hbstesting "github.com/gaobrian/open-falcon-backend/modules/hbs/testing"
 	. "gopkg.in/check.v1"
 	"testing"
 )

@@ -3,7 +3,7 @@ package database
 import (
 	log "github.com/Sirupsen/logrus"
 
-	"github.com/Cepave/open-falcon-backend/modules/query/g"
+	"github.com/gaobrian/open-falcon-backend/modules/query/g"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )

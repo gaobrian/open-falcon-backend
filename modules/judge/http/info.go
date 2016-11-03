@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/Cepave/open-falcon-backend/common/utils"
-	"github.com/Cepave/open-falcon-backend/modules/judge/g"
-	"github.com/Cepave/open-falcon-backend/modules/judge/store"
+	"github.com/gaobrian/open-falcon-backend/common/utils"
+	"github.com/gaobrian/open-falcon-backend/modules/judge/g"
+	"github.com/gaobrian/open-falcon-backend/modules/judge/store"
 )
 
 func configInfoRoutes() {

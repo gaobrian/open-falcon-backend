@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/astaxie/beego/orm"
-	"github.com/Cepave/open-falcon-backend/modules/query/g"
+	"github.com/gaobrian/open-falcon-backend/modules/query/g"
 	"github.com/jasonlvhit/gocron"
 	log "github.com/Sirupsen/logrus"
 )

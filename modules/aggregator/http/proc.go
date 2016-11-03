@@ -1,7 +1,7 @@
 package http
 
 import (
-	"github.com/Cepave/open-falcon-backend/modules/aggregator/db"
+	"github.com/gaobrian/open-falcon-backend/modules/aggregator/db"
 	"net/http"
 )
 

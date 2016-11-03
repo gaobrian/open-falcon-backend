@@ -3,10 +3,10 @@ package db
 import (
 	"database/sql"
 	"fmt"
-	commonModel "github.com/Cepave/open-falcon-backend/common/model"
-	"github.com/Cepave/open-falcon-backend/modules/hbs/model"
-	commonDb "github.com/Cepave/open-falcon-backend/common/db"
-	utils "github.com/Cepave/open-falcon-backend/common/utils"
+	commonModel "github.com/gaobrian/open-falcon-backend/common/model"
+	"github.com/gaobrian/open-falcon-backend/modules/hbs/model"
+	commonDb "github.com/gaobrian/open-falcon-backend/common/db"
+	utils "github.com/gaobrian/open-falcon-backend/common/utils"
 	"time"
 )
 

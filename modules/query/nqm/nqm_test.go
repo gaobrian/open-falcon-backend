@@ -2,8 +2,8 @@ package nqm
 
 import (
 	"encoding/json"
-	dsl "github.com/Cepave/open-falcon-backend/modules/query/dsl/nqm_parser" // As NQM intermediate representation
-	qtest "github.com/Cepave/open-falcon-backend/modules/query/test"
+	dsl "github.com/gaobrian/open-falcon-backend/modules/query/dsl/nqm_parser" // As NQM intermediate representation
+	qtest "github.com/gaobrian/open-falcon-backend/modules/query/test"
 	"github.com/bitly/go-simplejson"
 	. "gopkg.in/check.v1"
 	"sort"

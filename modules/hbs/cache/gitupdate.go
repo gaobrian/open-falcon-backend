@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Cepave/open-falcon-backend/modules/hbs/db"
+	"github.com/gaobrian/open-falcon-backend/modules/hbs/db"
 	log "github.com/Sirupsen/logrus"
 )
 

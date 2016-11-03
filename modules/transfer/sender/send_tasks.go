@@ -6,8 +6,8 @@ import (
 
 	log "github.com/Sirupsen/logrus"
 
-	"github.com/Cepave/open-falcon-backend/modules/transfer/g"
-	"github.com/Cepave/open-falcon-backend/modules/transfer/proc"
+	"github.com/gaobrian/open-falcon-backend/modules/transfer/g"
+	"github.com/gaobrian/open-falcon-backend/modules/transfer/proc"
 	cmodel "github.com/open-falcon/common/model"
 	nsema "github.com/toolkits/concurrent/semaphore"
 	"github.com/toolkits/container/list"

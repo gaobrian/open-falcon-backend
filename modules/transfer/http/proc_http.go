@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Cepave/open-falcon-backend/modules/transfer/proc"
-	"github.com/Cepave/open-falcon-backend/modules/transfer/sender"
+	"github.com/gaobrian/open-falcon-backend/modules/transfer/proc"
+	"github.com/gaobrian/open-falcon-backend/modules/transfer/sender"
 	cutils "github.com/open-falcon/common/utils"
 )
 

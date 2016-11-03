@@ -2,7 +2,7 @@ package api
 
 import (
 	"fmt"
-	"github.com/Cepave/open-falcon-backend/modules/alarm/g"
+	"github.com/gaobrian/open-falcon-backend/modules/alarm/g"
 	"github.com/toolkits/container/set"
 	"github.com/toolkits/net/httplib"
 	log "github.com/Sirupsen/logrus"

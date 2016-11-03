@@ -8,13 +8,13 @@ import (
 
 	log "github.com/Sirupsen/logrus"
 
-	cmodel "github.com/Cepave/open-falcon-backend/common/model"
-	cutils "github.com/Cepave/open-falcon-backend/common/utils"
+	cmodel "github.com/gaobrian/open-falcon-backend/common/model"
+	cutils "github.com/gaobrian/open-falcon-backend/common/utils"
 	rings "github.com/toolkits/consistent/rings"
 	nset "github.com/toolkits/container/set"
 	spool "github.com/toolkits/pool/simple_conn_pool"
 
-	"github.com/Cepave/open-falcon-backend/modules/query/g"
+	"github.com/gaobrian/open-falcon-backend/modules/query/g"
 )
 
 // 连接池

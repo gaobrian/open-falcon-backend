@@ -3,7 +3,7 @@ package http
 import (
 	"net/http"
 
-	"github.com/Cepave/open-falcon-backend/modules/task/proc"
+	"github.com/gaobrian/open-falcon-backend/modules/task/proc"
 )
 
 func configProcHttpRoutes() {

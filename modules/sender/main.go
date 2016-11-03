@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
-	"github.com/Cepave/open-falcon-backend/common/logruslog"
-	"github.com/Cepave/open-falcon-backend/common/vipercfg"
-	"github.com/Cepave/open-falcon-backend/modules/sender/cron"
-	"github.com/Cepave/open-falcon-backend/modules/sender/g"
-	"github.com/Cepave/open-falcon-backend/modules/sender/http"
-	"github.com/Cepave/open-falcon-backend/modules/sender/redis"
+	"github.com/gaobrian/open-falcon-backend/common/logruslog"
+	"github.com/gaobrian/open-falcon-backend/common/vipercfg"
+	"github.com/gaobrian/open-falcon-backend/modules/sender/cron"
+	"github.com/gaobrian/open-falcon-backend/modules/sender/g"
+	"github.com/gaobrian/open-falcon-backend/modules/sender/http"
+	"github.com/gaobrian/open-falcon-backend/modules/sender/redis"
 	"github.com/spf13/pflag"
 	"os"
 	"os/signal"

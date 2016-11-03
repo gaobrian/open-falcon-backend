@@ -2,7 +2,7 @@ package db
 
 import (
 	"database/sql"
-	"github.com/Cepave/open-falcon-backend/modules/aggregator/g"
+	"github.com/gaobrian/open-falcon-backend/modules/aggregator/g"
 	log "github.com/Sirupsen/logrus"
 	_ "github.com/go-sql-driver/mysql"
 )

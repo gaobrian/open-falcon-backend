@@ -6,10 +6,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Cepave/open-falcon-backend/common/model"
-	"github.com/Cepave/open-falcon-backend/modules/agent/g"
-	localHttp "github.com/Cepave/open-falcon-backend/modules/agent/http"
-	"github.com/Cepave/open-falcon-backend/modules/agent/plugins"
+	"github.com/gaobrian/open-falcon-backend/common/model"
+	"github.com/gaobrian/open-falcon-backend/modules/agent/g"
+	localHttp "github.com/gaobrian/open-falcon-backend/modules/agent/http"
+	"github.com/gaobrian/open-falcon-backend/modules/agent/plugins"
 	log "github.com/Sirupsen/logrus"
 )
 

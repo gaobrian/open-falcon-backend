@@ -2,9 +2,9 @@ package db
 
 import (
 	"database/sql"
-	"github.com/Cepave/open-falcon-backend/common/model"
-	"github.com/Cepave/open-falcon-backend/modules/hbs/g"
-	commonDb "github.com/Cepave/open-falcon-backend/common/db"
+	"github.com/gaobrian/open-falcon-backend/common/model"
+	"github.com/gaobrian/open-falcon-backend/modules/hbs/g"
+	commonDb "github.com/gaobrian/open-falcon-backend/common/db"
 	log "github.com/Sirupsen/logrus"
 )
 
