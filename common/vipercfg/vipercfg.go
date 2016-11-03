@@ -21,6 +21,7 @@ func Parse() {
 	pflag.StringP("config", "c", "cfg.json", "configuration file")
 	pflag.BoolP("version", "v", false, "show version")
 	pflag.Bool("check", false, "check collector")
+	pflag.StringP("logLevel","l" ,"debug", "set log level")
 	pflag.BoolP("help", "h", false, "usage")
 	pflag.Bool("vg", false, "show version and git commit log")
 	pflag.Parse()
@@ -32,6 +33,7 @@ func Bind() {
 	v.BindPFlag("check", pflag.Lookup("check"))
 	v.BindPFlag("help", pflag.Lookup("help"))
 	v.BindPFlag("vg", pflag.Lookup("vg"))
+	v.BindPFlag("logLevel", pflag.Lookup("logLevel"))
 }
 
 func Config() *viper.Viper {
