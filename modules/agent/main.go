@@ -9,6 +9,7 @@ import (
 	"github.com/Cepave/open-falcon-backend/modules/agent/g"
 	"github.com/Cepave/open-falcon-backend/modules/agent/http"
 	"os"
+	"github.com/Cepave/open-falcon-backend/modules/agent/logwatch"
 )
 
 func main() {
@@ -44,7 +45,7 @@ func main() {
 	cron.Collect()
 
 	go http.Start()
+	go logwatch.Start()
 
 	select {}
-
 }
