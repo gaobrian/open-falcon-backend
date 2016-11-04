@@ -2,8 +2,8 @@ package http
 
 import (
 	"fmt"
-	"github.com/gaobrian/open-falcon-backend/modules/agent/funcs"
-	//"github.com/toolkits/nux"
+	"github.com/gaobrian/open-falcon-backend/modules/winagent/funcs"
+	"github.com/gaobrian/open-falcon-backend/modules/winagent/tools/cpu"
 	"net/http"
 	"runtime"
 )
@@ -14,8 +14,12 @@ func configCpuRoutes() {
 	})
 
 	http.HandleFunc("/proc/cpu/mhz", func(w http.ResponseWriter, r *http.Request) {
-		data, err := nux.CpuMHz()
-		AutoRender(w, data, err)
+		cpus,_ := cpu.CPUInfo()
+
+		if len(cpus) >= 0 {
+			data := cpus[0].Mhz
+			AutoRender(w, data, nil)
+		}
 	})
 
 	http.HandleFunc("/page/cpu/usage", func(w http.ResponseWriter, r *http.Request) {

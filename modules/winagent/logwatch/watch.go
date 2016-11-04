@@ -91,8 +91,7 @@ func logFileWatcher(file *WatchFile) {
 	}
 	err = watcher.Add(watchPath)
 	if err != nil {
-		log.Fatal(err)
-
+		log.Errorln(err)
 	}
 	<-done
 }
@@ -126,7 +125,6 @@ func readFileAndSetTail(file *WatchFile) {
 
 func setLogFile() {
 	for i, v := range logCfg.WatchFiles {
-		log.Println(v.Path,v.Prefix,v.Suffix)
 		if v.PathIsFile {
 			logCfg.WatchFiles[i].ResultFile.FileName = v.Path
 			continue

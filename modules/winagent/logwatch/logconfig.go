@@ -51,7 +51,7 @@ var (
 	fixExpRegex = regexp.MustCompile(`[\W]+`)
 )
 
-func init() {
+func Init() {
 
 	var err error
 	logCfg, err = ReadConfig(configFile)
@@ -103,7 +103,7 @@ func checkLogConfig(config *LogConfig) error {
 		//检查路径
 		fInfo, err := os.Stat(v.Path)
 		if err != nil {
-			return err
+			continue
 		}
 
 		if !fInfo.IsDir() {
@@ -181,7 +181,7 @@ func LogConfigFileWatcher() {
 
 	err = watcher.Add(".")
 	if err != nil {
-		log.Fatal(err)
+		log.Errorln(err)
 	}
 	<-done
 }

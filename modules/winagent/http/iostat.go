@@ -1,12 +1,12 @@
 package http
 
 import (
-	"github.com/gaobrian/open-falcon-backend/modules/agent/funcs"
+	"github.com/gaobrian/open-falcon-backend/modules/winagent/funcs"
 	"net/http"
 )
 
 func configIoStatRoutes() {
 	http.HandleFunc("/page/diskio", func(w http.ResponseWriter, r *http.Request) {
-		RenderDataJson(w, funcs.IOStatsForPage())
+		RenderDataJson(w, funcs.DiskIOMetrics())
 	})
 }

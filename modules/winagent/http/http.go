@@ -2,7 +2,7 @@ package http
 
 import (
 	"encoding/json"
-	"github.com/gaobrian/open-falcon-backend/modules/agent/g"
+	"github.com/gaobrian/open-falcon-backend/modules/winagent/g"
 	log "github.com/Sirupsen/logrus"
 	"net/http"
 	_ "net/http/pprof"
@@ -19,13 +19,10 @@ func init() {
 	configDfRoutes()
 	configHealthRoutes()
 	configIoStatRoutes()
-	configKernelRoutes()
-	configMemoryRoutes()
 	configPageRoutes()
 	configPluginRoutes()
 	configPushRoutes()
 	configRunRoutes()
-	configSystemRoutes()
 }
 
 func RenderJson(w http.ResponseWriter, v interface{}) {

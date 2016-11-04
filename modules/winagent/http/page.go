@@ -1,7 +1,7 @@
 package http
 
 import (
-	"github.com/gaobrian/open-falcon-backend/modules/agent/g"
+	"github.com/gaobrian/open-falcon-backend/modules/winagent/g"
 	"github.com/toolkits/file"
 	"net/http"
 	"path/filepath"
