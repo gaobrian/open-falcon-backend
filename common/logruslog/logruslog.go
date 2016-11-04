@@ -3,6 +3,7 @@ package logruslog
 import (
 	"github.com/gaobrian/open-falcon-backend/common/vipercfg"
 	log "github.com/Sirupsen/logrus"
+	"runtime"
 )
 
 func logLevel(l string) log.Level {
@@ -28,5 +29,32 @@ func logLevel(l string) log.Level {
 func Init() {
 	log.SetFormatter(&log.TextFormatter{FullTimestamp: true})
 	logLevelStr := vipercfg.Config().GetString("logLevel")
+	logLevelStr = "debug"
 	log.SetLevel(logLevel(logLevelStr))
+
+	if log.GetLevel() == log.DebugLevel{
+		hook := new(CallerHook)
+		log.AddHook(hook)
+	}
 }
+
+
+type CallerHook struct {
+}
+
+func (hook *CallerHook) Fire(entry *log.Entry) error {
+	skipFrames := 6
+	if len(entry.Data) > 0 {
+		skipFrames = 6
+	}
+	_, fn, line, _ := runtime.Caller(skipFrames)
+	entry.Data["file"] = fn
+	entry.Data["line"] = line
+	return nil
+}
+
+func (hook *CallerHook) Levels() []log.Level {
+	return log.AllLevels
+}
+
+

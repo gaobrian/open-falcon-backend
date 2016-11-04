@@ -3,7 +3,7 @@ package http
 import (
 	"encoding/json"
 	"github.com/gaobrian/open-falcon-backend/common/model"
-	"github.com/gaobrian/open-falcon-backend/modules/agent/g"
+	"github.com/gaobrian/open-falcon-backend/modules/winagent/g"
 	"net/http"
 )
 

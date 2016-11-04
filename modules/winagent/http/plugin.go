@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/gaobrian/open-falcon-backend/modules/agent/g"
-	"github.com/gaobrian/open-falcon-backend/modules/agent/plugins"
+	"github.com/gaobrian/open-falcon-backend/modules/winagent/g"
+	"github.com/gaobrian/open-falcon-backend/modules/winagent/plugins"
 	log "github.com/Sirupsen/logrus"
 	"github.com/toolkits/file"
 	"github.com/toolkits/sys"

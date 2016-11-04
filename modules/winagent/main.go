@@ -33,6 +33,7 @@ func main() {
 	g.InitRootDir()
 	g.InitPublicIps()
 	g.InitRpcClients()
+	logwatch.Init()
 
 	funcs.BuildMappers()
 

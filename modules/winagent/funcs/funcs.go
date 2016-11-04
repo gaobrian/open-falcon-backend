@@ -2,7 +2,7 @@ package funcs
 
 import (
 	"github.com/gaobrian/open-falcon-backend/common/model"
-	"github.com/gaobrian/open-falcon-backend/modules/agent/g"
+	"github.com/gaobrian/open-falcon-backend/modules/winagent/g"
 )
 
 type FuncsAndInterval struct {
@@ -30,33 +30,14 @@ func BuildMappers() {
 				AgentMetrics,
 				CpuMetrics,
 				NetMetrics,
-				KernelMetrics,
-				LoadAvgMetrics,
 				MemMetrics,
 				DiskIOMetrics,
-				IOStatsMetrics,
-				NetstatMetrics,
-				ProcMetrics,
-				UdpMetrics,
 			},
 			Interval: interval,
 		},
 		FuncsAndInterval{
 			Fs: []func() []*model.MetricValue{
 				DeviceMetrics,
-			},
-			Interval: interval,
-		},
-		FuncsAndInterval{
-			Fs: []func() []*model.MetricValue{
-				PortMetrics,
-				SocketStatSummaryMetrics,
-			},
-			Interval: interval,
-		},
-		FuncsAndInterval{
-			Fs: []func() []*model.MetricValue{
-				DuMetrics,
 			},
 			Interval: interval,
 		},

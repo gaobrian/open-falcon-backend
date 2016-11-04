@@ -226,10 +226,10 @@ dashboard.getDiskstats = function () {
 }
 
 dashboard.getOs = function () {
-    generate_os_data("proc/kernel/version", "#os-info");
-    generate_os_data("proc/kernel/hostname", "#os-hostname");
-    generate_os_data("system/date", "#os-time");
-    generate_os_data("page/system/uptime", "#os-uptime");
+    // generate_os_data("proc/kernel/version", "#os-info");
+    // generate_os_data("proc/kernel/hostname", "#os-hostname");
+    // generate_os_data("system/date", "#os-time");
+    // generate_os_data("page/system/uptime", "#os-uptime");
 
     $.get("version", function(d){
         $("#agent-version").text(d);
