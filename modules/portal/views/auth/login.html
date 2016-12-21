@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<!--
+Beyond Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.4
+Version: 1.4
+Purchase: http://wrapbootstrap.com
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--Head-->
+
+<!-- Mirrored from beyondadmin-v1.4.s3-website-us-east-1.amazonaws.com/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 May 2015 08:27:13 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <title>Login Page</title>
+
+    <meta name="description" content="login page" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon">
+
+    <!--Basic Styles-->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link id="bootstrap-rtl-link" href="#" rel="stylesheet" />
+    <link href="/assets/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!--Beyond styles-->
+    <link href="/assets/css/beyond.min.css" rel="stylesheet" />
+    <link href="/assets/css/demo.min.css" rel="stylesheet" />
+    <link href="/assets/css/animate.min.css" rel="stylesheet" />
+    <link id="skin-link" href="#" rel="stylesheet" type="text/css" />
+
+    <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
+    <script src="/assets/js/skins.min.js"></script>
+
+
+</head>
+<!--Head Ends-->
+<!--Body-->
+<body>
+    <div class="login-container animated fadeInDown">
+        <div class="loginbox bg-white">
+            <div class="loginbox-title">SIGN IN</div>
+            <div class="loginbox-textbox">
+                <input type="text" class="form-control" id="name" placeholder="name" />
+            </div>
+            <div class="loginbox-textbox">
+                <input type="text" class="form-control" id="password" placeholder="Password" />
+            </div>
+            <div class="loginbox-forgot">
+                <a href="#">Forgot Password?</a>
+            </div>
+
+            <div class="loginbox-submit">
+                <input type="button" class="btn btn-primary btn-block" value="Login" onclick="login()">
+            </div>
+
+
+            {{if .CanRegister}}
+            <div class="loginbox-signup">
+                <a href="register.html">Sign Up</a>
+            </div>
+            {{end}}
+
+            <input type="hidden" id="sig" value="{{.Sig}}">
+            <input type="hidden" id="callback" value="{{.Callback}}">
+        </div>
+        <div class="logobox">
+        </div>
+    </div>
+
+    <!--Basic Scripts-->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!--Beyond Scripts-->
+    <script src="/assets/js/beyond.js"></script>
+
+    <script src="/assets/js/layer/layer.js"></script>
+    <script src="/assets/js/g.js"></script>
+
+</body>
+<!--Body Ends-->
+
+<!-- Mirrored from beyondadmin-v1.4.s3-website-us-east-1.amazonaws.com/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 May 2015 08:27:13 GMT -->
+</html>

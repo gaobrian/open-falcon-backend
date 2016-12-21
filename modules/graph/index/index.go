@@ -40,7 +40,6 @@ func ReceiveItem(item *cmodel.GraphItem, md5 string) {
 	rrdFileName := g.RrdFileName(g.Config().RRD.Storage, md5, item.DsType, item.Step)
 	if g.IsRrdFileExist(rrdFileName) {
 		indexedItemCache.Put(md5, NewIndexCacheItem(uuid, item))
-		return
 	}
 
 	// 缓存未命中, 放入增量更新队列
