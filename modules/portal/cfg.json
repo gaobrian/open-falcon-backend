@@ -3,7 +3,7 @@
     "company": "ZERO",
     "http": {
         "enabled": true,
-        "listen": "0.0.0.0:1234",
+        "listen": "0.0.0.0:8080",
         "cookie": ".brian.com.cn",
         "view_path": "/vagrant/src/github.com/gaobrian/open-falcon-backend/modules/fe/views",
         "static_path": "/vagrant/src/github.com/gaobrian/open-falcon-backend/modules/fe/static"
@@ -50,10 +50,10 @@
         "limit": 500
     },
     "shortcut": {
-        "falconPortal": "http://172.28.128.3:1234",
-        "falconDashboard": "http://172.28.128.3:1234/auth/login",
-        "grafanaDashboard": "http://172.28.128.3:1234",
-        "falconAlarm": "http://172.28.128.3:1234"
+        "falconPortal": "http://172.28.128.3:8080",
+        "falconDashboard": "http://172.28.128.3:8080/auth/login",
+        "grafanaDashboard": "http://172.28.128.3:8080",
+        "falconAlarm": "http://172.28.128.3:8080"
     },
     "api": {
         "name": "api_owl",

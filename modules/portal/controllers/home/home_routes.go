@@ -4,6 +4,7 @@ import (
 	"github.com/gaobrian/open-falcon-backend/modules/portal/g"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
+	"github.com/gaobrian/open-falcon-backend/modules/portal/controllers/base"
 )
 
 func init()  {
@@ -11,6 +12,7 @@ func init()  {
 }
 
 func ConfigRoutes() {
+	beego.InsertFilter("/",beego.BeforeRouter,base.FilterLoginUser)
 	beego.Router("/", &HomeController{})
 
 	beego.Get("/health", func(ctx *context.Context) {

@@ -11,64 +11,92 @@ $(function() {
 });
 </script>
 
-<div class="container" style="margin-top: 20px;">
-	<div class="row">
-		<div class="col-md-12">
 
-			<div style="margin: 0 auto; max-width: 500px;">
+<div class="page-breadcrumbs">
+	<ul class="breadcrumb">
+		<li>
+			<i class="fa fa-home"></i>
+			<a href="#">User</a>
+		</li>
+		<li class="active">Teams</li>
+	</ul>
+</div>
 
-				<ol class="breadcrumb">
-					<li><a href="/">首页</a></li>
-					<li class="active">用户组管理</li>
-				</ol>
+<div class="page-header position-relative">
 
-				<div class="form-inline mb20" role="form">
-					<div class="form-group">
-						<input type="text" value="{{.Query}}" class="form-control" id="query"
-						placeholder="query name">
-					</div>
-					<button type="button" onclick="query_team();" class="btn btn-default">
-						<span class="glyphicon glyphicon-search"></span>
-						Search
-					</button>
-					
-					<a href="/me/team/c" class="btn btn-default pull-right">
-						<span class="glyphicon glyphicon-plus"></span>
-						Add
-					</a>
-				</div>
+</div>
 
-				<div class="ts">
-					{{range .Teams}}
-					<div class="t">
-						<div>
-							<span class="glyphicon glyphicon-align-justify" style="font-size:9px;"></span>
-							{{.Name}}
-							<span class="gray" style="margin-right:10px;">{{.Resume}}</span>
-							<a href="/target-team/edit?id={{.Id}}" class="orange" style="text-decoration:none;">
-								<span class="glyphicon glyphicon-edit"></span>
-							</a>
-							<span class="cut-line">¦</span>
-							<a href="javascript:delete_team('{{.Id}}');" class="orange" style="text-decoration:none;">
-								<span class="glyphicon glyphicon-trash"></span>
-							</a>
-						</div>
-						<div class="mt10">
-							{{range member .Id}}
-							   <code class="users">{{.Name}}</code>
-						    {{end}}
-						</div>
-						<hr>
-					</div>
-					{{end}}
-				</div>
+<div class="page-body">
 
-				{{template "layout/paginator.html" .}}
-
+	<div class="col-xs-12 col-md-9">
+		<div role="form">
+			<div class="form-group">
+				<input type="text" value="{{.Query}}" class="form-control" id="query"
+					   placeholder="query name">
 			</div>
+			<button type="button" onclick="query_team();" class="btn btn-default">
+				<span class="glyphicon glyphicon-search"></span>
+				Search
+			</button>
 
+			<a href="/me/team/c" class="btn btn-default pull-right">
+				<span class="glyphicon glyphicon-plus"></span>
+				Add
+			</a>
 		</div>
+		<div class="well with-header with-footer">
+			<div class="header bg-blue">
+				Team List
+			</div>
+			<table class="table table-bordered table-hover">
+				<thead>
+				<tr>
+					<th>
+						Team
+					</th>
+					<th>
+						Description
+					</th>
+					<th>
+						Members
+					</th>
+					<th>
+
+					</th>
+				</tr>
+				</thead>
+				<tbody>
+				{{range .Teams}}
+				<tr>
+					<td>
+						{{.Name}}
+					</td>
+					<td>
+						{{.Resume}}
+					</td>
+					<td>
+						{{range member .Id}}
+						<code class="users">{{.Name}}</code>
+						{{end}}
+					</td>
+					<td>
+						<a href="/target-team/edit?id={{.Id}}" class="orange" style="text-decoration:none;">
+							<span class="glyphicon glyphicon-edit"></span>
+						</a>
+						<span class="cut-line">¦</span>
+						<a href="javascript:delete_team('{{.Id}}');" class="orange" style="text-decoration:none;">
+							<span class="glyphicon glyphicon-trash"></span>
+						</a>
+					</td>
+				</tr>
+				{{end}}
+				</tbody>
+			</table>
+			{{template "layout/paginator.html" .}}
+		</div>
+
 	</div>
 </div>
+
 
 {{template "layout/foot.html" .}}

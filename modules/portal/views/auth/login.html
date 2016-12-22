@@ -80,6 +80,17 @@ Purchase: http://wrapbootstrap.com
     <script src="/assets/js/layer/layer.js"></script>
     <script src="/assets/js/g.js"></script>
 
+    <script>
+        $(function() {
+            $("#password").keypress(function(e) {
+                var key = e.which;
+                if (key == 13) {
+                    login();
+                }
+            });
+        });
+    </script>
+
 </body>
 <!--Body Ends-->
 

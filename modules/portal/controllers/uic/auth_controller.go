@@ -64,7 +64,7 @@ func (this *AuthController) LoginGet() {
 	if appSig != "" && callback != "" {
 		this.Redirect(callback, 302)
 	} else {
-		this.Redirect("/me/info", 302)
+		this.Redirect("/user/info", 302)
 	}
 }
 
@@ -387,7 +387,7 @@ func (this *AuthController) LoginWithToken() {
 		if callback != "" {
 			this.Redirect(callback, 302)
 		} else {
-			this.Redirect("/me/info", 302)
+			this.Redirect("/user/info", 302)
 		}
 	} else {
 		// not logged in. redirect to login page.

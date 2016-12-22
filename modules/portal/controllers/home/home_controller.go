@@ -2,7 +2,9 @@ package home
 
 import (
 	"github.com/gaobrian/open-falcon-backend/modules/portal/g"
+        _ "github.com/gaobrian/open-falcon-backend/modules/portal/models/uic"
 	"github.com/astaxie/beego"
+	_ "log"
 )
 
 type HomeController struct {

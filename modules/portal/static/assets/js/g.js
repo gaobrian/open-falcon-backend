@@ -101,7 +101,7 @@ function login() {
             err_message_quietly(json.msg);
         } else {
             ok_message_quietly('sign in successfully', function() {
-                var redirect_url = '/me/info';
+                var redirect_url = '/';
                 if (json.data.length > 0) {
                     redirect_url = json.data;
                 }

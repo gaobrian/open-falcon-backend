@@ -49,7 +49,7 @@ func (this *TeamController) Teams() {
 	this.Data["Me"] = me
 	this.Data["IamRoot"] = me.Name == "root"
 	this.Data["Shortcut"] = g.Config().Shortcut
-	this.TplName = "team/create.html"
+	this.TplName = "team/list.html"
 }
 
 func (this *TeamController) CreateTeamGet() {
