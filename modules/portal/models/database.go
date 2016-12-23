@@ -11,6 +11,7 @@ import (
 )
 
 func InitDatabase() {
+        orm.Debug = true
 
 	// register model
 	orm.RegisterModel(new(uic.User), new(uic.Team), new(uic.Session),

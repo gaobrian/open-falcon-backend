@@ -95,12 +95,11 @@
 					{{range .Users}}
 					<tr role="row" class="even">
 						<td class="sorting_1">
-							{{.Name}}
+							{{.Name}}<a href="/about/{{.Name}}" target="_blank" style="text-decoration:none;">
+							<span class="glyphicon glyphicon-qrcode"></span></a>
 						</td>
 						<td>
-							{{.Cnname}}<a href="/about/{{.Name}}" target="_blank" style="text-decoration:none;">
-							<span class="glyphicon glyphicon-qrcode"></span>
-						</a>
+							{{.Cnname}}
 						</td>
 						<td>
 							{{.Phone}}

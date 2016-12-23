@@ -15,6 +15,7 @@ import (
 	"github.com/gaobrian/open-falcon-backend/modules/portal/models/uic"
 	"strings"
 	"github.com/astaxie/beego/plugins/cors"
+	"github.com/astaxie/beego/logs"
 )
 
 func main() {
@@ -43,13 +44,18 @@ func main() {
 	switch strings.ToLower(g.Config().Log) {
 	case "info":
 		beego.SetLevel(beego.LevelInformational)
+		logs.EnableFuncCallDepth(true)
 	case "debug":
 		beego.SetLevel(beego.LevelDebug)
+		logs.EnableFuncCallDepth(true)
 	case "warn":
 		beego.SetLevel(beego.LevelWarning)
+		logs.EnableFuncCallDepth(true)
 	case "error":
 		beego.SetLevel(beego.LevelError)
+		logs.EnableFuncCallDepth(true)
 	}
+
 
 	beego.InsertFilter("*", beego.BeforeRouter, cors.Allow(&cors.Options{
 		AllowAllOrigins: true,
