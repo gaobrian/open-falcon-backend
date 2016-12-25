@@ -2,7 +2,6 @@ package dashboard
 
 import (
 	"encoding/json"
-	"encoding/xml"
 	"fmt"
 	"net/http"
 	"regexp"
@@ -13,7 +12,6 @@ import (
 	"github.com/gaobrian/open-falcon-backend/modules/portal/g"
 	"github.com/gaobrian/open-falcon-backend/modules/portal/models/dashboard"
 	"github.com/gaobrian/open-falcon-backend/modules/portal/models/uic"
-	"github.com/SlyMarbo/rss"
 )
 
 type DashBoardController struct {
@@ -55,12 +53,19 @@ func (this *DashBoardController) CounterRegxQuery() {
 		return
 	}
 	queryStr := this.GetString("queryStr", "")
-	if queryStr == "" {
-		this.ResposeError(baseResp, "query string is empty, please check it")
+	endpoints := this.GetString("endpoints","")
+
+	if endpoints == "" {
+		this.ResposeError(baseResp, "no endpoints selected, please check it")
 		return
 	}
+
+	if (queryStr == ""){
+		queryStr = ".+"
+	}
+
 	limitNum, _ := this.GetInt("limit", 0)
-	counters, err := dashboard.QueryCounterByNameRegx(queryStr, limitNum)
+	counters, err := dashboard.QueryCounterByNameRegx(endpoints,queryStr, limitNum)
 	if err != nil {
 		this.ResposeError(baseResp, err.Error())
 		return
@@ -81,34 +86,6 @@ type xmlEntry struct {
 
 type xmlData struct {
 	EntryList []xmlEntry `xml:"entry"`
-}
-
-func (this *DashBoardController) LatestPlugin() {
-	baseResp := this.BasicRespGen()
-	_, err := this.SessionCheck()
-	if err != nil {
-		this.ResposeError(baseResp, err.Error())
-		return
-	}
-
-	v := xmlData{}
-
-	c, q_err := dashboard.QueryConfig("atom_addr")
-	if q_err != nil {
-		log.Errorln("QueryConfig error: ", q_err)
-	} else {
-		log.Debugln("Lastest Plugin atom address value is: ", c.Value)
-		if resp, err := http.Get(c.Value); err != nil {
-			log.Errorln("Error retrieving resource:", err)
-		} else {
-			defer resp.Body.Close()
-			xml.NewDecoder(resp.Body).Decode(&v)
-		}
-	}
-
-	baseResp.Data["EntryList"] = v.EntryList
-	this.ServeApiJson(baseResp)
-	return
 }
 
 //counter query by endpoints
@@ -368,12 +345,16 @@ func (this *DashBoardController) EndpRegxquryForOps() {
 		}
 	}
 	queryStr := this.GetString("queryStr", "")
+
 	this.Data["QueryCondstion"] = queryStr
 	if queryStr == "" || this.Data["SessionFlag"] == true {
 		this.Data["Init"] = true
 	} else {
 		enpRow, _ := dashboard.QueryEndpintByNameRegxForOps(queryStr)
-		enp := gitInfoAdapter(enpRow)
+		enp := make([]dashboard.Hosts,0)
+		for _, host := range enpRow {
+		     enp = append(enp, host)
+		}
 		if len(enp) > 0 {
 			var ips []string
 			this.Data["Endpoints"] = enp
@@ -391,44 +372,4 @@ func (this *DashBoardController) EndpRegxquryForOps() {
 		}
 	}
 	this.TplName = "dashboard/endpoints.html"
-}
-
-var commitsInfo []*rss.Item
-
-func gitInfoAdapter(enpRow []dashboard.Hosts) (enp []dashboard.GitInfo) {
-	c, q_err := dashboard.QueryConfig("atom_addr")
-	if q_err != nil {
-		log.Errorln("QueryConfig error: ", q_err)
-	}
-	log.Debugln("gitInfoAdapter shows atom address as: ", c.Value)
-
-	feed, err := rss.Fetch(c.Value)
-	if err != nil {
-		log.Errorln(err)
-	}
-
-	commitsInfo = append(commitsInfo, feed.Items...)
-	log.Debugln("commit atom feed is:", feed.Items)
-	log.Debugln("commitsInfo is:", commitsInfo)
-	for _, host := range enpRow {
-		gitInfo := dashboard.GitInfo{Hostname: host.Hostname,
-			Ip:            host.Ip,
-			AgentVersion:  host.AgentVersion,
-			PluginVersion: host.PluginVersion,
-			Valid:         false}
-		for _, item := range commitsInfo {
-			titleArray := strings.Split(item.ID, "/")
-			hash := strings.TrimSpace(titleArray[len(titleArray)-1])
-			if hash == host.PluginVersion {
-				// copy Title and Date column
-				gitInfo.Date = item.Date
-				gitInfo.Title = item.Title
-				gitInfo.Valid = true
-				break
-			}
-		}
-		enp = append(enp, gitInfo)
-	}
-
-	return
 }

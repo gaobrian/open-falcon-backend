@@ -19,7 +19,6 @@ func ConfigRoutes() {
 		beego.NSRouter("/endpointcounters", &DashBoardController{}, "get:CounterQuery;post:CounterQuery"),
 		beego.NSRouter("/endpointplugins", &DashBoardController{}, "get:EndpRegxquryForPlugin;post:EndpRegxquryForPlugin"),
 		beego.NSRouter("/endpointrunningplugins", &DashBoardController{}, "get:EndpRunningPlugin;post:EndpRunningPlugin"),
-		beego.NSRouter("/latestplugin", &DashBoardController{}, "get:LatestPlugin;post:LatestPlugin"),
 		beego.NSRouter("/counterendpoints", &DashBoardController{}, "get:EndpointsQuery;post:EndpointsQuery"),
 		beego.NSRouter("/counters", &DashBoardController{}, "get:CounterRegxQuery;post:CounterRegxQuery"),
 	)

@@ -10,6 +10,7 @@ type ApiResp struct {
 	Version string                 `json:"version,omitempty"`
 	Method  string                 `json:"method,omitempty"`
 	Status  string                 `json:"status,omitempty"`
+	Ok      bool                   `json:"ok,omitempty"`
 	Error   map[string]interface{} `json:"error,omitempty"`
 	Data    map[string]interface{} `json:"data,omitempty"`
 }
@@ -21,14 +22,17 @@ func (this *BaseController) BasicRespGen() (apiResp *ApiResp) {
 	apiResp.Method = this.Ctx.Request.Method
 	apiResp.Error = map[string]interface{}{}
 	apiResp.Data = map[string]interface{}{}
+	apiResp.Ok   = false
 	return
 }
 
 func (this *BaseController) ServeApiJson(msg *ApiResp) {
 	if len(msg.Error) != 0 {
 		msg.Status = "failed"
+		msg.Ok = false
 	} else {
 		msg.Status = "success"
+		msg.Ok = true
 	}
 
 	this.Data["json"] = msg

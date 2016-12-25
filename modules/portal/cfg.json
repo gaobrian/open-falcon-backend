@@ -10,7 +10,7 @@
     },
     "cache": {
         "enabled": true,
-        "redis": "127.0.0.1:6379",
+        "redis": "172.28.128.3:6379",
         "idle": 10,
         "max": 1000,
         "timeout": {
@@ -26,25 +26,25 @@
         "addr": "ldap.example.com:389"
     },
     "uic": {
-        "addr": "root:zaq12wsx@tcp(127.0.0.1:3306)/uic?charset=utf8&loc=Asia%2FTaipei",
+        "addr": "root:zaq12wsx@tcp(172.28.128.3:3306)/uic?charset=utf8&loc=Asia%2FTaipei",
         "idle": 10,
         "max": 100
     },
     "graphdb": {
-        "addr": "root:zaq12wsx@tcp(127.0.0.1:3306)/graph?charset=utf8&loc=Asia%2FTaipei",
+        "addr": "root:zaq12wsx@tcp(172.28.128.3:3306)/graph?charset=utf8&loc=Asia%2FTaipei",
         "idle": 10,
         "max": 100,
         "limit": 500,
         "limitHostGroup": 5
     },
     "falcon_portal": {
-        "addr": "root:zaq12wsx@tcp(127.0.0.1:3306)/falcon_portal?charset=utf8&loc=Asia%2FChongqing",
+        "addr": "root:zaq12wsx@tcp(172.28.128.3:3306)/falcon_portal?charset=utf8&loc=Asia%2FChongqing",
         "idle": 10,
         "max": 100,
         "limit": 500
     },
     "boss": {
-        "addr": "root:zaq12wsx@tcp(127.0.0.1:3306)/boss?charset=utf8&loc=Asia%2FChongqing",
+        "addr": "root:zaq12wsx@tcp(172.28.128.3:3306)/boss?charset=utf8&loc=Asia%2FChongqing",
         "idle": 10,
         "max": 100,
         "limit": 500

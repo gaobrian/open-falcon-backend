@@ -1,51 +1,185 @@
 {{template "layout/head.html" .}}
-<script src="/static/js/clipboard.min.js"></script>
+
+<script src="/assets/js/jquery.shiftcheckbox.js"></script>
+<script src="/assets/js/xperf.js"></script>
+
 <script>
-new Clipboard('#clip');
+    $(function() {
+        $(document).ready (function() {
+            $('.shiftCheckbox').shiftcheckbox();
+        });
+        $("#endpoint-search").keypress(function(e) {
+            var key = e.which;
+            if (key == 13) {
+                fn_list_endpoints();
+            }
+        });
+        $("#tag-search").keypress(function(e) {
+            var key = e.which;
+            if (key == 13) {
+                fn_list_endpoints();
+            }
+        });
+
+        $("#counter-search").keydown(function(event){
+            if(event.keyCode == 13){
+                fn_list_counters();
+                event.preventDefault();
+                return false;
+            }
+        });
+        $("#counter-filter").keydown(function(event){
+            if(event.keyCode == 13){
+                filter_counter();
+                event.preventDefault();
+                return false;
+            }
+        });
+
+    });
 </script>
-  {{if .SessionFlag}}
-    <div class="col-sm-9">{{.ErrorMsg}}</div>
-  {{else}}
-    <h3>Endpoints List Query</h3>
-    <form>
-      <input name="queryStr" type="text" placeholder="Please input query string of hosts" value={{.QueryCondstion}}></input>
-      <input class="btn btn-primary" type="submit" value="Query">
-    </form>
-    <div class="row">
-    {{$len := .Len }}
-    {{if .Init}}
-      <div class="col-sm-9">請輸入查詢條件(支援Regex),查詢全部可以使用".+"</div>
-    {{else if gt $len 0}}
-    <div class="col-sm-9">
-    <button id="clip" class="btn btn-warning" data-clipboard-text="{{.IP}}">Get Ip list</button>
-    <span>found {{$len}} host.</span>
-    <table class="table">
-      <thead>
-        <tr>
-        <th>HostName</th>
-        <th>IP</th>
-        <th>AgentVersion</th>
-        <th>PluginVersion</th>
-        <th>Date</th>
-        <th>Title</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{range .Endpoints}}
-          <tr>
-          <td>{{.Hostname}}</td>
-          <td id="ip">{{.Ip}}</td>
-          <td>{{.AgentVersion}}</td>
-          <td>{{.PluginVersion}}</td>
-          <td>{{.Date}}</td>
-          <td>{{.Title}}</td>
-          </tr>
-        {{end}}
-      </tbody>
-    </table>
-    </div>
-    {{else}}
-      <div class="col-sm-9">無法找到{{.QueryCondstion}}的相關結果</div>
-    {{end}}
-  {{end}} 
+
+<div class="page-breadcrumbs">
+  <ul class="breadcrumb">
+    <li>
+      <i class="fa fa-home"></i>
+      <a href="#">Dashboard</a>
+    </li>
+  </ul>
 </div>
+
+<div class="page-header position-relative">
+
+</div>
+
+
+<script src="/assets/js/clipboard.min.js"></script>
+<script>
+    new Clipboard('#clip');
+</script>
+
+<div class="page-body">
+    <div class="col-xs-12 col-md-12">
+      <div class="row">
+        <div class="col-xs-6  col-md-6" id="endpoints">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <img class="loading pull-right" src="/assets/img/loading.gif" style="display:none;"></img>
+              搜索Endpoints
+            </div>
+
+            <div class="panel-body">
+              <form role="form">
+                <div class="form-group">
+                  <label>Endpoint</label>
+                  <input id="endpoint-search" placeholder="Please input query string of hosts" name="endpoint_search" type="text" class="form-control input-sm">
+                  <p class="help-block"><span class="text-warning">請輸入查詢條件(支援Regex),查詢全部可以使用".+"</span></p>
+                </div>
+                <div class="form-group">
+                  <label>标签( eg: job=appstore-web)</label>
+                  <input id="tag-search" name="tag_search" type="text" class="form-control input-sm">
+                </div>
+              </form>
+              <form class="form-inline" role="form">
+                <div class="form-group">
+                  <button type="button" id="btn-search-endpoints" class="btn btn-default btn-sm btn-success" onclick="fn_list_endpoints();return false;">全局搜索</button>
+                  <select class="form-control input-sm" id="endpoint-limit" onchange="fn_list_endpoints();return false;">
+                    <option value="50"> Limit 50</option>
+                    <option value="100">Limit 100</option>
+                    <option value="500">Limit 500</option>
+                  </select>
+                </div>
+              </form>
+              <hr/>
+              <form class="form-inline" role="form">
+                <div class="form-group">
+                  <input id="endpoint-filter" type="text" class="form-control input-sm">
+                  <button class="btn btn-default btn-sm btn-info" onclick="filter_endpoint();return false;">快速过滤</button>
+                </div>
+              </form>
+
+            </div>
+
+            <div class="panel-body">
+            <p class="help-block"><span class="text-warning">支持shift多选</span></p>
+            <table class="table table-striped">
+              <thead class="bordered-blueberry">
+              <tr>
+                <th width="30px">
+                  #
+                </th>
+                <th>
+                  <button class="btn btn-link btn-xs pull-right" onclick="fn_list_counters();return false;">刷新counter列表</button>
+                </th>
+              </tr>
+              </thead>
+
+              <tbody id="tbody-endpoints">
+              </tbody>
+            </table>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-xs-6  col-md-6">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <img class="loading pull-right" src="/assets/img/loading.gif" style="display:none;">
+              搜索Counters
+            </div>
+
+            <div class="panel-body">
+              <form role="form">
+                <div class="form-group">
+                  <label>Counter</label>
+                  <input id="counter-search" class="form-control input-sm" placeholder="Please input query string of counters" type="text">
+                  <p class="help-block"><span class="text-warning">請輸入查詢條件(支援Regex),查詢全部可以使用".+"</span></p>
+                </div>
+              </form>
+
+              <form class="form-inline" role="form">
+                <button class="btn btn-default btn-sm btn-success" onclick="fn_list_counters();return false;">搜索</button>
+                <div class="form-group">
+                  <select class="form-control input-sm" id="counter-limit" onchange="fn_list_counters();return false;">
+                    <option value="50"> Limit 50</option>
+                    <option value="100">Limit 100</option>
+                    <option value="500">Limit 500</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <input id="counter-filter" class="form-control input-sm" type="text">
+                  <button class="btn btn-default btn-sm btn-info" onclick="filter_counter();return false;">快速过滤</button>
+                </div>
+
+                <div class="dropdown form-group pull-right">
+                  <a class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" href="#"> 看图 <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#" class="btn btn-link btn-xs" onclick="fn_show_all('h');return false;">Endpoint视角</a></li>
+                    <li><a href="#" class="btn btn-link btn-xs" onclick="fn_show_all('k');return false;">Counter视角</a></li>
+                    <li><a href="#" class="btn btn-link btn-xs" onclick="fn_show_all('a');return false;">组合视角</a></li>
+                  </ul>
+                </div>
+
+              </form>
+
+            </div>
+
+            <table class="table table-striped">
+              <thead> <tr>
+                <th width="30px"><input id="check_all_counters" type="checkbox"></th>
+                <th>Counters</th>
+                <th width="60px">类型</th>
+                <th width="60px">频率</th>
+              </tr></thead>
+
+              <tbody id="tbody-counters"> </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+</div>
+
+{{template "layout/foot.html" .}}
