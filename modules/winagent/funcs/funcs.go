@@ -31,13 +31,16 @@ func BuildMappers() {
 				CpuMetrics,
 				NetMetrics,
 				MemMetrics,
+                                DeviceMetrics,
 				DiskIOMetrics,
+				TcpipMetrics,
 			},
 			Interval: interval,
 		},
 		FuncsAndInterval{
 			Fs: []func() []*model.MetricValue{
-				DeviceMetrics,
+				PortMetrics,
+				ProcMetrics,
 			},
 			Interval: interval,
 		},

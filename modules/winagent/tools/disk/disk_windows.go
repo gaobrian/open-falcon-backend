@@ -153,3 +153,19 @@ func DiskIOCounters() (map[string]DiskIOCountersStat, error) {
 	}
 	return ret, nil
 }
+
+
+type Win32_PerfFormattedData_IDLE struct {
+	Name            string
+	PercentIdleTime uint64
+}
+
+
+func PerfFormattedData_IDLE() ([]Win32_PerfFormattedData_IDLE, error) {
+
+	var dst []Win32_PerfFormattedData_IDLE
+
+	err := wmi.Query("SELECT PercentIdleTime FROM Win32_PerfFormattedData_PerfDisk_PhysicalDisk ", &dst)
+
+	return dst, err
+}

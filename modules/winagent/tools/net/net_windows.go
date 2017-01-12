@@ -5,7 +5,7 @@ import (
 	"os"
 	"syscall"
 	"unsafe"
-
+	"github.com/gaobrian/open-falcon-backend/modules/winagent/tools/wmi"
 	"github.com/gaobrian/open-falcon-backend/modules/winagent/tools/internal/common"
 )
 
@@ -93,3 +93,42 @@ func getAdapterList() (*syscall.IpAdapterInfo, error) {
 	}
 	return a, nil
 }
+
+type Tcpipdatastat struct {
+	ConFailures    uint64 `json:"confailures"`
+	ConActive      uint64 `json:"conactive"`
+	ConPassive     uint64 `json:"conpassive"`
+	ConEstablished uint64 `json:"conestablished"`
+	ConReset       uint64 `json:"conreset"`
+}
+
+type Win32_TCPPerfFormattedData struct {
+	ConnectionFailures     uint64
+	ConnectionsActive      uint64
+	ConnectionsPassive     uint64
+	ConnectionsEstablished uint64
+	ConnectionsReset       uint64
+}
+
+func TcpipCounters() ([]Tcpipdatastat, error) {
+	ret := make([]Tcpipdatastat, 0)
+	var dst []Win32_TCPPerfFormattedData
+	err := wmi.Query("SELECT ConnectionFailures,ConnectionsActive,ConnectionsPassive,ConnectionsEstablished,ConnectionsReset FROM Win32_PerfRawData_Tcpip_TCPv4", &dst)
+	if err != nil {
+		return ret, err
+	}
+
+	for _, d := range dst {
+
+		ret = append(ret, Tcpipdatastat{
+			ConFailures:    uint64(d.ConnectionFailures),
+			ConActive:      uint64(d.ConnectionsActive),
+			ConPassive:     uint64(d.ConnectionsPassive),
+			ConEstablished: uint64(d.ConnectionsEstablished),
+			ConReset:       uint64(d.ConnectionsReset),
+		})
+	}
+
+	return ret, nil
+}
+

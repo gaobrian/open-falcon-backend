@@ -24,6 +24,21 @@ type HeartbeatConfig struct {
 	Timeout  int    `json:"timeout"`
 }
 
+type MsSQLConfig struct {
+	Enabled  bool     `json:"enabled"`
+	Addr     string   `json:"addr"`
+	Port     int      `json:"port"`
+	Username string   `json:"username"`
+	Password string   `json:"password"`
+	Encrypt  string   `json:"encrypt"`
+	Instance []string `json:"instance"`
+}
+
+type IIsConfig struct {
+	Enabled  bool     `json:"enabled"`
+	Websites []string `json:"websites"`
+}
+
 type TransferConfig struct {
 	Enabled  bool     `json:"enabled"`
 	Addrs    []string `json:"addrs"`
@@ -46,6 +61,8 @@ type GlobalConfig struct {
 	Debug         bool             `json:"debug"`
 	Hostname      string           `json:"hostname"`
 	IP            string           `json:"ip"`
+	IIs           *IIsConfig       `json:"iis"`
+	MsSQL         *MsSQLConfig     `json:"mssql"`
 	Plugin        *PluginConfig    `json:"plugin"`
 	Heartbeat     *HeartbeatConfig `json:"heartbeat"`
 	Transfer      *TransferConfig  `json:"transfer"`
