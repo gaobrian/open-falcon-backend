@@ -36,7 +36,7 @@ func QueryCounterByNameRegx(endpoints string,queryStr string, limit int) (counte
 	q.Using("graph")
 
 	jsonString := `{"hosts":` + endpoints +`}`
-	var endps map[string][]string
+	var endps map[string][]interface{}
 	if err = json.Unmarshal([]byte(jsonString), &endps); err != nil {
 		return nil,errors.New("")
 	}
@@ -45,16 +45,14 @@ func QueryCounterByNameRegx(endpoints string,queryStr string, limit int) (counte
 		return nil,errors.New("")
 	}
 
-	sql_endp := `select id from endpoint where endpoint in (` + `"` + endps["hosts"][0] + `"`
+	replacer := "?"
 	for i:=1;i<len(endps["hosts"]);i++{
-		sql_endp = sql_endp + `,"` + endps["hosts"][i] + `"`
+		replacer = replacer + ",?"
 	}
-
-	sql_endp = sql_endp + ")"
 
 
 	var endpoint_ids []int
-	_,err  = q.Raw(sql_endp).QueryRows(&endpoint_ids)
+	_,err  = q.Raw(`select id from endpoint where endpoint in (`+replacer + `)`,endps["hosts"]...).QueryRows(&endpoint_ids)
 
 	if len(endpoint_ids) ==  0 || err!=nil {
 		return nil,errors.New("")

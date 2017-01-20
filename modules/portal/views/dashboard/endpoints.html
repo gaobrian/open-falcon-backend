@@ -1,23 +1,30 @@
 {{template "layout/head.html" .}}
 
-<script src="/assets/js/jquery.shiftcheckbox.js"></script>
+<script src="/assets/js/bootstrap-tokenfield/bootstrap-tokenfield.min.js"></script>
 <script src="/assets/js/xperf.js"></script>
+<script src="/assets/js/select2/select2.js"></script>
+<script src="/assets/js/jquery.shiftcheckbox.js"></script>
 
 <script>
+
     $(function() {
         $(document).ready (function() {
             $('.shiftCheckbox').shiftcheckbox();
         });
+        $("#check_all_endpoints").bind("click", fn_check_all_hosts);
+        $("#check_all_counters").bind("click", fn_check_all_items);
         $("#endpoint-search").keypress(function(e) {
             var key = e.which;
             if (key == 13) {
                 fn_list_endpoints();
+                e.preventDefault();
             }
         });
         $("#tag-search").keypress(function(e) {
             var key = e.which;
             if (key == 13) {
                 fn_list_endpoints();
+                e.preventDefault();
             }
         });
 
@@ -28,6 +35,7 @@
                 return false;
             }
         });
+
         $("#counter-filter").keydown(function(event){
             if(event.keyCode == 13){
                 filter_counter();
@@ -35,6 +43,13 @@
                 return false;
             }
         });
+
+//        $("#tag-search").tokenfield();
+
+        $("#service-search").select2({
+            minimumInputLength: 3
+        });
+
 
     });
 </script>
@@ -52,7 +67,7 @@
 
 </div>
 
-
+<link href="/assets/css/fix.css" rel="stylesheet"/>
 <script src="/assets/js/clipboard.min.js"></script>
 <script>
     new Clipboard('#clip');
@@ -105,9 +120,7 @@
             <table class="table table-striped">
               <thead class="bordered-blueberry">
               <tr>
-                <th width="30px">
-                  #
-                </th>
+                <th><label><input type="checkbox" class="input shiftCheckbox" id="check_all_endpoints"><span class="text"></span></label></th>
                 <th>
                   <button class="btn btn-link btn-xs pull-right" onclick="fn_list_counters();return false;">刷新counter列表</button>
                 </th>
@@ -166,8 +179,7 @@
 
             <table class="table table-striped">
               <thead> <tr>
-                <th width="30px"><input id="check_all_counters" type="checkbox"></th>
-                <th>Counters</th>
+                <th colspan="2"><label><input type="checkbox" class="input shiftCheckbox" id="check_all_counters"><span class="text"></span></label></th>
                 <th width="60px">类型</th>
                 <th width="60px">频率</th>
               </tr></thead>
