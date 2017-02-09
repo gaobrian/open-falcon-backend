@@ -6,7 +6,7 @@ import (
 	"net"
 
 	"github.com/gaobrian/open-falcon-backend/modules/winagent/g"
-	"github.com/open-falcon/common/model"
+	"github.com/gaobrian/open-falcon-backend/common/model"
 )
 
 const (
