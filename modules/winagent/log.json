@@ -3,27 +3,5 @@
   "metric": "log",
   "timer": 60,
   "files": [
-    {
-      "path": "/a/",
-      "prefix": "a",
-      "suffix": ".log",
-      "keywords": [
-        {
-          "exp": "ERROR",
-          "tag": "ERROR"
-        }
-      ]
-    },
-    {
-      "path": "/var/log/",
-      "prefix": "syslog",
-      "suffix": "",
-      "keywords": [
-        {
-          "exp": "[E|e]rror",
-          "tag": "error"
-        }
-      ]
-    }
   ]
 }

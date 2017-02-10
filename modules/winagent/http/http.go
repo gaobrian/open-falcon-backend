@@ -17,6 +17,7 @@ func init() {
 	configAdminRoutes()
 	configCpuRoutes()
 	configDfRoutes()
+	configKernelRoutes()
 	configHealthRoutes()
 	configIoStatRoutes()
 	configPageRoutes()
