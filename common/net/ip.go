@@ -4,7 +4,7 @@ import (
 	"net"
 	"strings"
 
-	n "github.com/toolkits/net"
+	//n "github.com/toolkits/net"
 )
 
 func InternetIP() (ips []string, err error) {
@@ -21,7 +21,7 @@ func InternetIP() (ips []string, err error) {
 		}
 
 		if iface.Flags&net.FlagLoopback != 0 {
-			continue // loopback interface
+			//continue // loopback interface
 		}
 
 		// ignore docker and warden bridge
@@ -53,9 +53,10 @@ func InternetIP() (ips []string, err error) {
 			}
 
 			ipStr := ip.String()
-			if !n.IsIntranet(ipStr) {
-				ips = append(ips, ipStr)
-			}
+			ips = append(ips, ipStr)
+			//if !n.IsIntranet(ipStr) {
+			//	ips = append(ips, ipStr)
+			//}
 		}
 	}
 

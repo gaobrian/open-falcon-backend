@@ -38,13 +38,21 @@ func (self *refreshHostProcessor) BootCallback(tx *sql.Tx) bool {
 		`
 		UPDATE host
 		SET ip = ?,
-			agent_version = ?,
-			plugin_version = ?
+		agent_version = ?,
+		plugin_version = ?,
+		osinfo = ?,
+		sysuptime = ?,
+		servertime = ?,
+		tags = ?
 		WHERE hostname = ?
 		`,
 		self.IP,
 		self.AgentVersion,
 		self.PluginVersion,
+		self.Os,
+		self.SysUpTime,
+		self.ServerTime,
+		self.Tags,
 		self.Hostname,
 	)
 
@@ -55,18 +63,23 @@ func (self *refreshHostProcessor) IfTrue(tx *sql.Tx) {
 		`
 		INSERT INTO host(
 			hostname,
-			ip, agent_version, plugin_version
+			ip, agent_version, plugin_version,
+			osinfo,sysuptime,servertime,tags
 		)
-		VALUES (?, ?, ?, ?)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 		ON DUPLICATE KEY UPDATE
-			ip = ?,
-			agent_version = ?,
-			plugin_version = ?
+		ip = ?,
+		agent_version = ?,
+		plugin_version = ?
 		`,
 		self.Hostname,
 		self.IP,
 		self.AgentVersion,
 		self.PluginVersion,
+		self.Os,
+		self.SysUpTime,
+		self.ServerTime,
+		self.Tags,
 		self.IP,
 		self.AgentVersion,
 		self.PluginVersion,
@@ -88,13 +101,21 @@ func updateAgent(agentInfo *model.AgentUpdateInfo) (dbError error) {
 		`
 		UPDATE host
 		SET ip = ?,
-			agent_version = ?,
-			plugin_version = ?
+		agent_version = ?,
+		plugin_version = ?,
+		osinfo = ?,
+		sysuptime = ?,
+		servertime = ?,
+		tags = ?
 		WHERE hostname = ?
 		`,
 		agentInfo.ReportRequest.IP,
 		agentInfo.ReportRequest.AgentVersion,
 		agentInfo.ReportRequest.PluginVersion,
+		agentInfo.ReportRequest.Os,
+		agentInfo.ReportRequest.SysUpTime,
+		agentInfo.ReportRequest.ServerTime,
+		agentInfo.ReportRequest.Tags,
 		agentInfo.ReportRequest.Hostname,
 	)
 

@@ -2,6 +2,7 @@
     "debug": true,
     "hostname": "",
     "ip": "",
+    "endpointtags":"aliasname=agentname",
     "plugin": {
         "enabled": false,
         "git": "https://github.com/open-falcon/plugin.git",

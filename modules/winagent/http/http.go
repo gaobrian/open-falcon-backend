@@ -24,6 +24,7 @@ func init() {
 	configPluginRoutes()
 	configPushRoutes()
 	configRunRoutes()
+	configSystemRoutes()
 }
 
 func RenderJson(w http.ResponseWriter, v interface{}) {

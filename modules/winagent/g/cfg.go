@@ -61,6 +61,7 @@ type GlobalConfig struct {
 	Debug         bool             `json:"debug"`
 	Hostname      string           `json:"hostname"`
 	IP            string           `json:"ip"`
+	EndpointTags  string           `endpointtags`
 	IIs           *IIsConfig       `json:"iis"`
 	MsSQL         *MsSQLConfig     `json:"mssql"`
 	Plugin        *PluginConfig    `json:"plugin"`

@@ -7,6 +7,7 @@ import (
 	"github.com/gaobrian/open-falcon-backend/common/model"
 	"github.com/gaobrian/open-falcon-backend/modules/winagent/g"
 	log "github.com/Sirupsen/logrus"
+	"github.com/gaobrian/open-falcon-backend/modules/winagent/tools/os"
 )
 
 func ReportAgentStatus() {
@@ -32,12 +33,27 @@ func reportAgentStatus(interval time.Duration) {
 			log.Warnln("GetCurrGitRepo returns: ", currRepoErr)
 		}
 
+
+		osinfo, err :=  os.OSVersion()
+		if err != nil {
+			osinfo = ""
+		}
+
+		sysuptime := os.SysupTime2Int64()
+
+		servertime := time.Now().Unix()
+
+
 		req := model.AgentReportRequest{
 			Hostname:      hostname,
 			IP:            g.IP(),
 			AgentVersion:  g.VERSION,
 			PluginVersion: currPluginVersion,
 			GitRepo:       currPluginRepo,
+			Os:            osinfo,
+			SysUpTime:     float64(sysuptime),
+			ServerTime:    float64(servertime),
+			Tags:          g.Config().EndpointTags,
 		}
 
 		log.Debugln("show req of Agent.ReportStatus: ", req)

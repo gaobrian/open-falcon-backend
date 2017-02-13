@@ -4,6 +4,7 @@ import (
 	"github.com/gaobrian/open-falcon-backend/modules/winagent/g"
 	"net/http"
 	"runtime"
+	"github.com/gaobrian/open-falcon-backend/modules/winagent/tools/os"
 )
 
 func configKernelRoutes() {
@@ -18,8 +19,8 @@ func configKernelRoutes() {
 	})
 
 	http.HandleFunc("/proc/kernel/version", func(w http.ResponseWriter, r *http.Request) {
-		data := "Windows"
-		AutoRender(w, data, nil)
+		data, err := os.OSVersion()
+		AutoRender(w, data, err)
 	})
 
 }

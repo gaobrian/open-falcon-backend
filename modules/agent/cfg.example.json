@@ -2,6 +2,7 @@
     "debug": true,
     "hostname": "",
     "ip": "",
+    "endpointtags":"aliasname=agentname",
     "plugin": {
         "enabled": false,
         "dir": "./plugin",

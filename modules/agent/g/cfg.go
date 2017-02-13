@@ -46,6 +46,7 @@ type GlobalConfig struct {
 	Debug         bool             `json:"debug"`
 	Hostname      string           `json:"hostname"`
 	IP            string           `json:"ip"`
+	EndpointTags  string           `endpointtags`
 	Plugin        *PluginConfig    `json:"plugin"`
 	Heartbeat     *HeartbeatConfig `json:"heartbeat"`
 	Transfer      *TransferConfig  `json:"transfer"`

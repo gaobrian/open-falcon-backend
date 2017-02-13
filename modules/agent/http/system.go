@@ -2,10 +2,11 @@ package http
 
 import (
 	"fmt"
-	"github.com/toolkits/nux"
 	"net/http"
 	"runtime"
 	"time"
+	"github.com/gaobrian/open-falcon-backend/modules/winagent/tools/load"
+	"github.com/toolkits/nux"
 )
 
 func configSystemRoutes() {
@@ -35,22 +36,22 @@ func configSystemRoutes() {
 
 	http.HandleFunc("/page/system/loadavg", func(w http.ResponseWriter, req *http.Request) {
 		cpuNum := runtime.NumCPU()
-		load, err := nux.LoadAvg()
+		load, err := load.LoadAvg()
 		if err != nil {
 			RenderMsgJson(w, err.Error())
 			return
 		}
 
 		ret := [3][2]interface{}{
-			[2]interface{}{load.Avg1min, int64(load.Avg1min * 100.0 / float64(cpuNum))},
-			[2]interface{}{load.Avg5min, int64(load.Avg5min * 100.0 / float64(cpuNum))},
-			[2]interface{}{load.Avg15min, int64(load.Avg15min * 100.0 / float64(cpuNum))},
+			[2]interface{}{load.Load1, int64(load.Load1 * 100.0 / float64(cpuNum))},
+			[2]interface{}{load.Load5, int64(load.Load5 * 100.0 / float64(cpuNum))},
+			[2]interface{}{load.Load15, int64(load.Load15 * 100.0 / float64(cpuNum))},
 		}
 		RenderDataJson(w, ret)
 	})
 
 	http.HandleFunc("/proc/system/loadavg", func(w http.ResponseWriter, req *http.Request) {
-		data, err := nux.LoadAvg()
+		data, err := load.LoadAvg()
 		AutoRender(w, data, err)
 	})
 

@@ -10,6 +10,11 @@ type AgentReportRequest struct {
 	AgentVersion  string
 	PluginVersion string
 	GitRepo       string
+	//Add more fields for system
+	Os            string
+	SysUpTime     float64
+	ServerTime    float64
+        Tags          string
 }
 
 func (this *AgentReportRequest) String() string {
